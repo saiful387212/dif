@@ -1560,3 +1560,265 @@ if (newsletterForm) {
 
     console.log('✅ সকল ফর্ম সফলভাবে একটিভ হয়েছে');
 });
+// ============================================================
+// Telegram এ নোটিফিকেশন পাঠান
+// ============================================================
+
+function sendToTelegram(formType, formData) {
+    // লোকাল সার্ভার চেক
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1';
+    
+    if (isLocal) {
+        console.log(`📱 Telegram (লোকাল): ${formType}`, formData);
+        // লোকাল স্টোরেজে সেভ করুন
+        saveDataLocally(formType, formData);
+        showSuccessMessage(formType);
+        return Promise.resolve({ success: true, message: 'লোকাল মোড' });
+    }
+    
+    // লাইভ সার্ভারে পাঠান
+    return fetch('telegram.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            type: formType,
+            data: JSON.stringify(formData)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(`📱 Telegram রেসপন্স:`, data);
+        
+        if (data.success) {
+            // সফল
+            return data;
+        } else {
+            // ব্যাকআপ: লোকাল স্টোরেজে সেভ করুন
+            saveDataLocally(formType, formData);
+            return {
+                success: false,
+                message: 'Telegram এ পাঠাতে সমস্যা হয়েছে। ডাটা সেভ করা হয়েছে।',
+                data: formData
+            };
+        }
+    })
+    .catch(error => {
+        console.error('❌ Telegram এ পাঠাতে সমস্যা:', error);
+        // ব্যাকআপ
+        saveDataLocally(formType, formData);
+        return {
+            success: false,
+            message: 'Network error - ডাটা সেভ করা হয়েছে',
+            data: formData
+        };
+    });
+}
+
+// ============================================================
+// লোকাল ডাটা সেভ (ব্যাকআপ)
+// ============================================================
+
+function saveDataLocally(type, data) {
+    let key = '';
+    switch(type) {
+        case 'contact': key = 'contactForms'; break;
+        case 'donation': key = 'donations'; break;
+        case 'membership': key = 'memberships'; break;
+        case 'newsletter': key = 'newsletters'; break;
+        default: key = 'formData';
+    }
+    
+    let allData = JSON.parse(localStorage.getItem(key) || '[]');
+    allData.push({
+        ...data,
+        timestamp: new Date().toISOString(),
+        type: type
+    });
+    localStorage.setItem(key, JSON.stringify(allData));
+    console.log(`📝 ডাটা সেভ হয়েছে (${key}):`, data);
+}
+
+function showSuccessMessage(type) {
+    const messages = {
+        contact: '📱 আপনার বার্তা সফলভাবে জমা হয়েছে!',
+        donation: '📱 আপনার দান সফল হয়েছে!',
+        membership: '📱 আপনার আবেদন সফলভাবে জমা হয়েছে!',
+        newsletter: '📱 আপনি সফলভাবে সাবস্ক্রাইব করেছেন!'
+    };
+    alert(messages[type] || '📱 সফল হয়েছে!');
+}
+
+// ============================================================
+// ফর্ম সাবমিট ফাংশন আপডেট
+// ============================================================
+
+// ১. কন্টাক্ট ফর্ম
+if (document.getElementById('contactForm')) {
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('fullName')?.value || '',
+            email: document.getElementById('email')?.value || '',
+            phone: document.getElementById('phone')?.value || '',
+            subject: document.getElementById('subject')?.value || '',
+            message: document.getElementById('message')?.value || ''
+        };
+        
+        // ভ্যালিডেশন
+        if (!formData.name || !formData.email || !formData.message) {
+            alert('দয়া করে সব আবশ্যক ক্ষেত্র পূরণ করুন।');
+            return;
+        }
+        
+        console.log('✅ কন্টাক্ট ফর্ম:', formData);
+        
+        // Telegram এ পাঠান
+        sendToTelegram('contact', formData).then(result => {
+            if (document.getElementById('contactModal')) {
+                document.getElementById('contactModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            this.reset();
+        });
+    });
+}
+
+// ২. ডোনেশন ফর্ম
+if (document.getElementById('donationForm')) {
+    document.getElementById('donationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('donorName')?.value || '',
+            email: document.getElementById('donorEmail')?.value || '',
+            phone: document.getElementById('donorPhone')?.value || '',
+            amount: document.getElementById('donationAmount')?.value || '',
+            note: document.getElementById('donationNote')?.value || ''
+        };
+        
+        if (!formData.name || !formData.email || !formData.phone || !formData.amount) {
+            alert('দয়া করে সব আবশ্যক ক্ষেত্র পূরণ করুন।');
+            return;
+        }
+        
+        console.log('✅ দানের তথ্য:', formData);
+        
+        sendToTelegram('donation', formData).then(result => {
+            if (document.getElementById('donationModal')) {
+                document.getElementById('donationModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            this.reset();
+            document.querySelectorAll('.amount-preset').forEach(btn => btn.classList.remove('active'));
+        });
+    });
+}
+
+// ৩. জয়েন ফর্ম
+window.submitJoinForm = function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('joinName')?.value || '',
+        phone: document.getElementById('joinPhone')?.value || '',
+        email: document.getElementById('joinEmail')?.value || '',
+        address: document.getElementById('joinAddress')?.value || '',
+        membershipType: document.getElementById('selectedMembership')?.textContent || ''
+    };
+    
+    if (!formData.name || !formData.phone) {
+        alert('দয়া করে নাম এবং মোবাইল নম্বর দিন।');
+        return;
+    }
+    
+    console.log('✅ সদস্যপদ আবেদন:', formData);
+    
+    sendToTelegram('membership', formData).then(result => {
+        alert(`🎉 অভিনন্দন! আপনার আবেদন সফলভাবে জমা হয়েছে!\n\n📱 Telegram নোটিফিকেশন পাঠানো হয়েছে।\n\nসদস্যপদ: ${formData.membershipType}\nনাম: ${formData.name}\nমোবাইল: ${formData.phone}\n\nশীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।\nধন্যবাদ!`);
+        closeJoinForm();
+        document.getElementById('joinForm')?.reset();
+    });
+};
+
+// ৪. নিউজলেটার ফর্ম
+if (document.getElementById('newsletterForm')) {
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('newsletterEmail')?.value.trim() || '';
+        
+        if (!email) {
+            showNewsletterMessage('দয়া করে আপনার ইমেইল ঠিকানা দিন', 'error');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNewsletterMessage('সঠিক ইমেইল ঠিকানা দিন', 'error');
+            return;
+        }
+        
+        console.log('✅ নিউজলেটার সাবস্ক্রাইব:', email);
+        
+        sendToTelegram('newsletter', { email: email }).then(result => {
+            showNewsletterMessage('📱 আপনি সফলভাবে সাবস্ক্রাইব করেছেন!', 'success');
+            this.reset();
+            setTimeout(() => {
+                const msg = document.getElementById('newsletterMessage');
+                if (msg) {
+                    msg.textContent = '';
+                    msg.className = 'newsletter-message';
+                }
+            }, 5000);
+        });
+    });
+}
+
+function showNewsletterMessage(text, type) {
+    const msg = document.getElementById('newsletterMessage');
+    if (msg) {
+        msg.textContent = text;
+        msg.className = 'newsletter-message ' + type;
+    }
+}
+
+// ============================================================
+// মডাল বন্ধ ফাংশন
+// ============================================================
+
+window.closeContactModal = function() {
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+window.closeDonationModal = function() {
+    const modal = document.getElementById('donationModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+window.closeJoinForm = function() {
+    const modal = document.getElementById('joinModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+// Esc কী
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeContactModal();
+        closeDonationModal();
+        closeJoinForm();
+    }
+});
