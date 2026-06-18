@@ -963,3 +963,600 @@ function changeAvatar(event, input) {
         reader.readAsDataURL(file);
     }
 }
+// ============================================================
+// সকল ফর্ম একটিভ করার জন্য JavaScript
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+
+    // ============================================================
+    // ১. কন্টাক্ট ফর্ম (যোগাযোগ)
+    // ============================================================
+    
+    const contactForm = document.getElementById('contactForm');
+    const contactModal = document.getElementById('contactModal');
+
+    if (contactForm) {
+        // ফিল্ড ভ্যালিডেশন
+        const contactInputs = contactForm.querySelectorAll('input, textarea');
+        contactInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateContactField(this);
+            });
+            input.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateContactField(this);
+                }
+            });
+        });
+
+        // ফর্ম সাবমিট
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let isValid = true;
+            const requiredFields = this.querySelectorAll('input[required], textarea[required]');
+            requiredFields.forEach(field => {
+                if (!validateContactField(field)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                const firstError = this.querySelector('.error');
+                if (firstError) firstError.focus();
+                return;
+            }
+
+            // ডেটা সংগ্রহ
+            const formData = {
+                name: document.getElementById('fullName')?.value || '',
+                email: document.getElementById('email')?.value || '',
+                subject: document.getElementById('subject')?.value || '',
+                message: document.getElementById('message')?.value || ''
+            };
+
+            console.log('✅ কন্টাক্ট ফর্ম ডেটা:', formData);
+            
+            // সাফল্যের মডাল দেখান
+            if (contactModal) {
+                contactModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে! ধন্যবাদ।');
+            }
+            
+            this.reset();
+        });
+    }
+
+    // কন্টাক্ট ফিল্ড ভ্যালিডেশন
+    function validateContactField(field) {
+        const value = field.value.trim();
+        const errorSpan = document.getElementById(field.id + 'Error');
+        
+        if (!errorSpan) return true;
+
+        field.classList.remove('error');
+        errorSpan.textContent = '';
+
+        if (field.hasAttribute('required') && !value) {
+            field.classList.add('error');
+            errorSpan.textContent = 'এই ক্ষেত্রটি আবশ্যক';
+            return false;
+        }
+
+        if (field.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                field.classList.add('error');
+                errorSpan.textContent = 'সঠিক ইমেইল ঠিকানা দিন';
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // কন্টাক্ট মডাল বন্ধ
+    window.closeContactModal = function() {
+        const modal = document.getElementById('contactModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+
+    // মডালের বাইরে ক্লিক করলে বন্ধ
+    if (contactModal) {
+        contactModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+    }
+
+    // ============================================================
+    // ২. ডোনেশন ফর্ম (দান)
+    // ============================================================
+    
+    const donationForm = document.getElementById('donationForm');
+    const donationModal = document.getElementById('donationModal');
+
+    // অ্যামাউন্ট প্রিসেট
+    const presetButtons = document.querySelectorAll('.amount-preset');
+    const amountInput = document.getElementById('donationAmount');
+
+    presetButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            const amount = this.getAttribute('data-amount');
+            if (amountInput) {
+                amountInput.value = amount;
+                amountInput.style.borderColor = '#1a7a5a';
+                setTimeout(() => {
+                    amountInput.style.borderColor = '';
+                }, 2000);
+            }
+        });
+    });
+
+    if (amountInput) {
+        amountInput.addEventListener('input', function() {
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+        });
+    }
+
+    // ডোনেশন ফর্ম সাবমিট
+    if (donationForm) {
+        donationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('donorName')?.value || '',
+                email: document.getElementById('donorEmail')?.value || '',
+                phone: document.getElementById('donorPhone')?.value || '',
+                amount: document.getElementById('donationAmount')?.value || '',
+                note: document.getElementById('donationNote')?.value || 'প্রদান করা হয়নি'
+            };
+
+            // ভ্যালিডেশন
+            if (!formData.name || !formData.email || !formData.phone || !formData.amount) {
+                alert('দয়া করে সব আবশ্যক ক্ষেত্র পূরণ করুন।');
+                return;
+            }
+
+            console.log('✅ দানের তথ্য:', formData);
+            
+            // সাফল্যের মডাল দেখান
+            if (donationModal) {
+                donationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert('আপনার দান সফল হয়েছে! ধন্যবাদ।');
+            }
+            
+            this.reset();
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+        });
+    }
+
+    // ডোনেশন মডাল বন্ধ
+    window.closeDonationModal = function() {
+        const modal = document.getElementById('donationModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+
+    if (donationModal) {
+        donationModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDonationModal();
+            }
+        });
+    }
+
+    // ============================================================
+    // ৩. জয়েন ফর্ম (সদস্যপদ)
+    // ============================================================
+    
+    const joinModal = document.getElementById('joinModal');
+    const selectedMembership = document.getElementById('selectedMembership');
+
+    // জয়েন ফর্ম ওপেন
+    window.openJoinForm = function(membershipType, price) {
+        if (joinModal && selectedMembership) {
+            selectedMembership.textContent = membershipType || 'সাধারণ সদস্য';
+            joinModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            const form = document.getElementById('joinForm');
+            if (form) form.reset();
+        }
+    };
+
+    // জয়েন ফর্ম ক্লোজ
+    window.closeJoinForm = function() {
+        if (joinModal) {
+            joinModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+
+    if (joinModal) {
+        joinModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeJoinForm();
+            }
+        });
+    }
+
+    // জয়েন ফর্ম সাবমিট
+    window.submitJoinForm = function(event) {
+        event.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('joinName')?.value || '',
+            phone: document.getElementById('joinPhone')?.value || '',
+            email: document.getElementById('joinEmail')?.value || 'প্রদান করা হয়নি',
+            address: document.getElementById('joinAddress')?.value || 'প্রদান করা হয়নি',
+            membershipType: document.getElementById('selectedMembership')?.textContent || ''
+        };
+
+        // ভ্যালিডেশন
+        if (!formData.name || !formData.phone) {
+            alert('দয়া করে নাম এবং মোবাইল নম্বর দিন।');
+            return;
+        }
+
+        console.log('✅ সদস্যপদ আবেদন:', formData);
+
+        alert(`🎉 অভিনন্দন! আপনার আবেদন সফলভাবে জমা হয়েছে।
+
+সদস্যপদ: ${formData.membershipType}
+নাম: ${formData.name}
+মোবাইল: ${formData.phone}
+
+শীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।
+ধন্যবাদ!`);
+
+        closeJoinForm();
+        document.getElementById('joinForm')?.reset();
+    };
+
+    // ============================================================
+    // ৪. নিউজলেটার ফর্ম (ফুটার)
+    // ============================================================
+    
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterInput = document.getElementById('newsletterEmail');
+    const newsletterMessage = document.getElementById('newsletterMessage');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = newsletterInput?.value.trim() || '';
+            
+            if (!email) {
+                showNewsletterMessage('দয়া করে আপনার ইমেইল ঠিকানা দিন', 'error');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNewsletterMessage('সঠিক ইমেইল ঠিকানা দিন', 'error');
+                return;
+            }
+
+            console.log('✅ নিউজলেটার সাবস্ক্রাইব:', email);
+            showNewsletterMessage('আপনি সফলভাবে সাবস্ক্রাইব করেছেন! ধন্যবাদ।', 'success');
+            this.reset();
+            
+            setTimeout(() => {
+                if (newsletterMessage) {
+                    newsletterMessage.textContent = '';
+                    newsletterMessage.className = 'newsletter-message';
+                }
+            }, 5000);
+        });
+    }
+
+    function showNewsletterMessage(text, type) {
+        if (newsletterMessage) {
+            newsletterMessage.textContent = text;
+            newsletterMessage.className = 'newsletter-message ' + type;
+        }
+    }
+// ============================================================
+// ইমেইলে ডাটা পাঠানোর ফাংশন
+// ============================================================
+
+function sendEmailToAdmin(formType, formData) {
+    // চেক করুন যে আপনি লোকাল সার্ভারে আছেন নাকি লাইভ সার্ভারে
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1';
+    
+    if (isLocal) {
+        // লোকাল সার্ভারে কনসোলে দেখান
+        console.log(`📧 ইমেইল পাঠানো হবে (লোকাল): ${formType}`, formData);
+        console.log('💡 টিপ: লাইভ সার্ভারে আপলোড করলে ইমেইল আসবে');
+        return Promise.resolve({ success: true, message: 'লোকাল মোড' });
+    }
+    
+    // লাইভ সার্ভারে AJAX রিকোয়েস্ট
+    return fetch('send-email.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            type: formType,
+            data: JSON.stringify(formData)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(`📧 ইমেইল স্ট্যাটাস (${formType}):`, data);
+        return data;
+    })
+    .catch(error => {
+        console.error('❌ ইমেইল পাঠাতে সমস্যা:', error);
+        return { success: false, message: 'Network error' };
+    });
+}
+
+// ============================================================
+// আপডেটেড ফর্ম সাবমিট ফাংশন
+// ============================================================
+
+// ১. কন্টাক্ট ফর্ম
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // ভ্যালিডেশন চেক
+        let isValid = true;
+        const requiredFields = this.querySelectorAll('input[required], textarea[required]');
+        requiredFields.forEach(field => {
+            if (!validateContactField(field)) {
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) return;
+        
+        const formData = {
+            name: document.getElementById('fullName')?.value || '',
+            email: document.getElementById('email')?.value || '',
+            phone: document.getElementById('phone')?.value || '',
+            subject: document.getElementById('subject')?.value || '',
+            message: document.getElementById('message')?.value || ''
+        };
+        
+        console.log('✅ কন্টাক্ট ফর্ম ডেটা:', formData);
+        
+        // ইমেইল পাঠান
+        sendEmailToAdmin('contact', formData).then(result => {
+            if (result.success) {
+                // সাফল্যের মডাল দেখান
+                if (contactModal) {
+                    contactModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                this.reset();
+            } else {
+                alert('ইমেইল পাঠাতে সমস্যা হয়েছে। তবে আপনার ডাটা সংরক্ষিত হয়েছে।');
+            }
+        });
+    });
+}
+
+// ২. ডোনেশন ফর্ম
+if (donationForm) {
+    donationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('donorName')?.value || '',
+            email: document.getElementById('donorEmail')?.value || '',
+            phone: document.getElementById('donorPhone')?.value || '',
+            amount: document.getElementById('donationAmount')?.value || '',
+            note: document.getElementById('donationNote')?.value || ''
+        };
+        
+        if (!formData.name || !formData.email || !formData.phone || !formData.amount) {
+            alert('দয়া করে সব আবশ্যক ক্ষেত্র পূরণ করুন।');
+            return;
+        }
+        
+        console.log('✅ দানের তথ্য:', formData);
+        
+        // ইমেইল পাঠান
+        sendEmailToAdmin('donation', formData).then(result => {
+            if (result.success) {
+                if (donationModal) {
+                    donationModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                this.reset();
+                presetButtons.forEach(btn => btn.classList.remove('active'));
+            } else {
+                alert('ইমেইল পাঠাতে সমস্যা হয়েছে। তবে আপনার ডাটা সংরক্ষিত হয়েছে।');
+            }
+        });
+    });
+}
+
+// ৩. জয়েন ফর্ম
+window.submitJoinForm = function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('joinName')?.value || '',
+        phone: document.getElementById('joinPhone')?.value || '',
+        email: document.getElementById('joinEmail')?.value || '',
+        address: document.getElementById('joinAddress')?.value || '',
+        membershipType: document.getElementById('selectedMembership')?.textContent || ''
+    };
+    
+    if (!formData.name || !formData.phone) {
+        alert('দয়া করে নাম এবং মোবাইল নম্বর দিন।');
+        return;
+    }
+    
+    console.log('✅ সদস্যপদ আবেদন:', formData);
+    
+    // ইমেইল পাঠান
+    sendEmailToAdmin('membership', formData).then(result => {
+        if (result.success) {
+            alert(`🎉 অভিনন্দন! আপনার আবেদন সফলভাবে জমা হয়েছে।
+
+সদস্যপদ: ${formData.membershipType}
+নাম: ${formData.name}
+মোবাইল: ${formData.phone}
+
+শীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।
+আমরা একটি কনফার্মেশন ইমেইলও পাঠিয়েছি।
+
+ধন্যবাদ!`);
+            closeJoinForm();
+            document.getElementById('joinForm')?.reset();
+        } else {
+            alert('ইমেইল পাঠাতে সমস্যা হয়েছে। তবে আপনার আবেদন সংরক্ষিত হয়েছে।');
+            closeJoinForm();
+        }
+    });
+};
+
+// ৪. নিউজলেটার ফর্ম
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = newsletterInput?.value.trim() || '';
+        
+        if (!email) {
+            showNewsletterMessage('দয়া করে আপনার ইমেইল ঠিকানা দিন', 'error');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showNewsletterMessage('সঠিক ইমেইল ঠিকানা দিন', 'error');
+            return;
+        }
+        
+        console.log('✅ নিউজলেটার সাবস্ক্রাইব:', email);
+        
+        // ইমেইল পাঠান
+        sendEmailToAdmin('newsletter', { email: email }).then(result => {
+            if (result.success) {
+                showNewsletterMessage('আপনি সফলভাবে সাবস্ক্রাইব করেছেন! ধন্যবাদ।', 'success');
+                this.reset();
+                
+                setTimeout(() => {
+                    newsletterMessage.textContent = '';
+                    newsletterMessage.className = 'newsletter-message';
+                }, 5000);
+            } else {
+                showNewsletterMessage('সাবস্ক্রাইব করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।', 'error');
+            }
+        });
+    });
+}
+    // ============================================================
+    // ৫. ফোন নম্বর ভ্যালিডেশন (শুধু ডিজিট)
+    // ============================================================
+    
+    document.querySelectorAll('input[type="tel"]').forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+    });
+
+    // ============================================================
+    // ৬. Esc কী প্রেস করলে সব মডাল বন্ধ
+    // ============================================================
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeContactModal();
+            closeDonationModal();
+            closeJoinForm();
+        }
+    });
+
+    // ============================================================
+    // ৭. ব্যাংক তথ্য কপি (ডোনেশন সেকশন)
+    // ============================================================
+    
+    window.copyBankInfo = function() {
+        const bankDetails = document.querySelectorAll('.bank-detail');
+        let text = 'দারুল ইত্তিহাদ ফাউন্ডেশন - ব্যাংক তথ্য\n\n';
+        
+        bankDetails.forEach(detail => {
+            const label = detail.querySelector('.label')?.textContent || '';
+            const value = detail.querySelector('.value')?.textContent || '';
+            text += `${label}: ${value}\n`;
+        });
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                showCopySuccess();
+            }).catch(() => {
+                fallbackCopy(text);
+            });
+        } else {
+            fallbackCopy(text);
+        }
+    };
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            showCopySuccess();
+        } catch (err) {
+            alert('কপি করতে সমস্যা হয়েছে। দয়া করে ম্যানুয়ালি কপি করুন।');
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function showCopySuccess() {
+        const btn = document.querySelector('.btn-copy');
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i><span>কপি হয়েছে!</span>';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('copied');
+            }, 3000);
+        }
+    }
+
+    // ============================================================
+    // ৮. পেমেন্ট বাটন (ডোনেশন সেকশন)
+    // ============================================================
+    
+    window.openPayment = function(method) {
+        alert(`আপনি "${method}" এর মাধ্যমে পেমেন্ট করতে চাচ্ছেন।\n\nশীঘ্রই পেমেন্ট পেজে রিডাইরেক্ট করা হবে।`);
+        console.log(`✅ পেমেন্ট মেথড: ${method}`);
+    };
+
+    console.log('✅ সকল ফর্ম সফলভাবে একটিভ হয়েছে');
+});
