@@ -601,16 +601,25 @@
                 </p>
             </div>
 
+            <!-- ===== প্রতিষ্ঠাতা ===== -->
             <div class="founder-section">
                 <div class="founder-card" id="founderCard">
                     <div class="founder-image">
+                        <!-- ছবি আপলোড করার জন্য img ট্যাগ -->
+                        <img src="images/1000113951.jpg" alt="মোহাম্মদ রহমত উল্লাহ - প্রতিষ্ঠাতা" class="founder-img" />
+                        <!-- প্লেসহোল্ডার (ছবি না থাকলে দেখাবে) -->
                         <div class="placeholder-icon">
                             <i class="fas fa-user-circle"></i>
                         </div>
                         <span class="founder-badge"><i class="fas fa-star"></i> প্রতিষ্ঠাতা</span>
+                        <!-- ছবি পরিবর্তনের বাটন -->
+                        <button class="btn-change-photo" onclick="document.getElementById('founderImageInput').click()" title="ছবি পরিবর্তন করুন">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <input type="file" id="founderImageInput" accept="image/*" style="display:none" onchange="changeFounderImage(event)" />
                     </div>
                     <div class="founder-info">
-                        <h3>প্রফেসর ড. মোঃ আবদুল্লাহ আল-মামুন</h3>
+                        <h3>মোহাম্মদ রহমত উল্লাহ </h3>
                         <p class="designation">প্রতিষ্ঠাতা ও প্রধান উপদেষ্টা</p>
                         <div class="quote">
                             <i class="fas fa-quote-left" style="color: #1a7a5a; opacity: 0.3; margin-right: 0.5rem;"></i>
@@ -633,58 +642,108 @@
                 </div>
             </div>
 
+            <!-- ===== কেন্দ্রীয় পরিচালনা পরিষদ ===== -->
             <div class="committee-section">
                 <h3 class="section-sub-title">কেন্দ্রীয় পরিচালনা পরিষদ</h3>
                 <p class="committee-subtitle">ফাউন্ডেশনের নীতিনির্ধারণী সংস্থা</p>
                 <div class="committee-grid">
+                    <!-- সদস্য ১ -->
                     <div class="committee-card" data-delay="100">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="images/Screenshot 2026-06-19 021710.jpg" alt="মোহাম্মদ রহমত উল্লাহ" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <!-- ছবি পরিবর্তনের বাটন -->
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput1').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput1" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
                         <h4 class="committee-name">প্রফেসর ড. মোঃ আবদুল্লাহ আল-মামুন</h4>
                         <p class="committee-role">সভাপতি</p>
                         <p class="committee-desc">ঢাকা বিশ্ববিদ্যালয়</p>
                     </div>
 
+                    <!-- সদস্য ২ -->
                     <div class="committee-card" data-delay="150">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="assets/images/team/vice-president.jpg" alt="অধ্যাপক মোঃ হাসান আলী" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput2').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput2" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
                         <h4 class="committee-name">অধ্যাপক মোঃ হাসান আলী</h4>
                         <p class="committee-role">সহ-সভাপতি</p>
                         <p class="committee-desc">জাহাঙ্গীরনগর বিশ্ববিদ্যালয়</p>
                     </div>
 
+                    <!-- সদস্য ৩ -->
                     <div class="committee-card" data-delay="200">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="assets/images/team/secretary.jpg" alt="মোঃ কামাল হোসেন" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput3').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput3" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
                         <h4 class="committee-name">মোঃ কামাল হোসেন</h4>
                         <p class="committee-role">সাধারণ সম্পাদক</p>
                         <p class="committee-desc">সাবেক সচিব, সমাজকল্যাণ মন্ত্রণালয়</p>
                     </div>
 
+                    <!-- সদস্য ৪ -->
                     <div class="committee-card" data-delay="250">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="assets/images/team/treasurer.jpg" alt="জনাবা নাসরিন আক্তার" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput4').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput4" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
-                        <h4 class="committee-name">জনাবা নাসরিন আক্তার</h4>
+                        <h4 class="committee-name">সাইফুল ইসলাম ইরভান/h4>
                         <p class="committee-role">কোষাধ্যক্ষ</p>
-                        <p class="committee-desc">চার্টার্ড অ্যাকাউন্ট্যান্ট</p>
+                        <p class="committee-desc">ঢাকা বিশ্ববিদ্যালয়</p>
                     </div>
 
+                    <!-- সদস্য ৫ -->
                     <div class="committee-card" data-delay="300">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="assets/images/team/member1.jpg" alt="ড. মোহাম্মদ আলী" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput5').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput5" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
                         <h4 class="committee-name">ড. মোহাম্মদ আলী</h4>
                         <p class="committee-role">সদস্য</p>
                         <p class="committee-desc">বাংলাদেশ মেডিকেল অ্যাসোসিয়েশন</p>
                     </div>
 
+                    <!-- সদস্য ৬ -->
                     <div class="committee-card" data-delay="350">
                         <div class="committee-avatar">
-                            <i class="fas fa-user-circle"></i>
+                            <img src="assets/images/team/member2.jpg" alt="অ্যাডভোকেট সাদিয়া রহমান" class="committee-img" />
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <button class="btn-avatar-upload" onclick="event.stopPropagation(); document.getElementById('avatarInput6').click()" title="ছবি পরিবর্তন করুন">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="avatarInput6" accept="image/*" style="display:none" onchange="changeAvatar(event, this)" />
                         </div>
                         <h4 class="committee-name">অ্যাডভোকেট সাদিয়া রহমান</h4>
                         <p class="committee-role">সদস্য</p>
@@ -692,6 +751,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ===== সাংগঠনিক কাঠামো ===== -->
+            <div class="org-chart-section">
+                <h3 class="section-sub-title">সাংগঠনিক কাঠামো</h3>
+                <div class="org-chart" id="orgChart">
+                    <div class="org-level">
+                        <div class="org-node level-1">
+                            <div class="node-icon"><i class="fas fa-crown"></i></div>
+                            <div class="node-title">সভাপতি</div>
+                            <div class="node-sub">প্রফেসর ড. মোঃ আবদুল্লাহ আল-মামুন</div>
+                        </div>
+                    </div>
+                    <div class="org-connector">
+                        <span class="line"></span>
+                    </div>
+                    <div class="org-level">
+                        <div class="org-node level-2">
+                            <div class="node-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="node-title">সহ-সভাপতি</div>
+                            <div class="node-sub">অধ্যাপক মোঃ হাসান আলী</div>
+                        </div>
+                        <div class="org-node level-2">
+                            <div class="node-icon"><i class="fas fa-tasks"></i></div>
+                            <div class="node-title">সাধারণ সম্পাদক</div>
+                            <div class="node-sub">মোঃ কামাল হোসেন</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
             <div class="org-chart-section">
                 <h3 class="section-sub-title">সাংগঠনিক কাঠামো</h3>
