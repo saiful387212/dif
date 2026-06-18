@@ -1,0 +1,470 @@
+/* statistics.css */
+/* ===== রিসেট & বেসিক ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    background: #f8fafc;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== স্ট্যাটিস্টিক্স সেকশন ===== */
+.statistics {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #0a1a2b 0%, #162a3d 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ডেকোরেটিভ ব্যাকগ্রাউন্ড এলিমেন্ট */
+.statistics::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 122, 90, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.statistics::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45, 155, 122, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ===== সেকশন হেডার ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== স্ট্যাট গ্রিড ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== স্ট্যাট আইটেম ===== */
+.stat-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(74, 222, 128, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* স্ট্যাট আইকন */
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(26, 122, 90, 0.1));
+    border-radius: 50%;
+    font-size: 2rem;
+    color: #4ade80;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.stat-item:hover .stat-icon {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 12px 32px rgba(26, 122, 90, 0.3);
+}
+
+/* স্ট্যাট নাম্বার */
+.stat-number {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.stat-number .plus {
+    font-size: 0.7em;
+    color: #4ade80;
+}
+
+/* স্ট্যাট লেবেল */
+.stat-label {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e8f0f8;
+    margin-bottom: 0.3rem;
+}
+
+.stat-description {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+/* ===== স্ট্যাট ডিভাইডার ===== */
+.stats-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.divider-line {
+    flex: 1;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.2), transparent);
+}
+
+.divider-icon {
+    color: rgba(74, 222, 128, 0.2);
+    font-size: 1.5rem;
+}
+
+/* ===== সিটিএ সেকশন ===== */
+.stats-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    z-index: 1;
+}
+
+.stats-cta h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.stats-cta p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2.5rem;
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    border-radius: 50px;
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(26, 122, 90, 0.3);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26, 122, 90, 0.4);
+    background: linear-gradient(135deg, #15694d, #248a6a);
+}
+
+.btn-cta i {
+    transition: transform 0.3s ease;
+}
+
+.btn-cta:hover i {
+    transform: translateX(6px);
+}
+
+/* ===== রেস্পন্সিভ ===== */
+
+/* ট্যাবলেট */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* মোবাইল */
+@media (max-width: 768px) {
+    .statistics {
+        padding: 3.5rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+
+    .stat-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    .stat-description {
+        font-size: 0.75rem;
+    }
+
+    .stats-divider {
+        margin: 1.5rem 0 2rem;
+        gap: 1rem;
+    }
+
+    .divider-line {
+        max-width: 100px;
+    }
+
+    .stats-cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .stats-cta h3 {
+        font-size: 1.5rem;
+    }
+
+    .stats-cta p {
+        font-size: 0.95rem;
+    }
+
+    .btn-cta {
+        padding: 0.75rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ছোট মোবাইল */
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+
+    .stat-item {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .stat-description {
+        display: none;
+    }
+
+    .stats-cta h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn-cta {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* অ্যাক্সেসিবিলিটি */
+@media (prefers-reduced-motion: reduce) {
+    .stat-item {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .stat-item:hover {
+        transform: none !important;
+    }
+
+    .stat-icon {
+        transition: none !important;
+    }
+
+    .stat-item:hover .stat-icon {
+        transform: none !important;
+    }
+
+    .btn-cta {
+        transition: none !important;
+    }
+
+    .btn-cta:hover {
+        transform: none !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .stat-item {
+        border: 2px solid #ffffff;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .stat-icon {
+        background: #1a7a5a;
+        color: #ffffff;
+    }
+
+    .stat-item:hover .stat-icon {
+        background: #0a1a2b;
+    }
+
+    .btn-cta {
+        background: #1a7a5a;
+        box-shadow: none;
+        border: 2px solid #ffffff;
+    }
+}
+
+/* ===== অ্যানিমেশন ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-item.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ===== স্ক্রল বার ===== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a1a2b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a7a5a;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2d9b7a;
+}

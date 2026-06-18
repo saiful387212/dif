@@ -1,0 +1,746 @@
+/* governance.css */
+/* ===== রিসেট & বেসিক ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    background: #f8fafc;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== গভর্নেন্স সেকশন ===== */
+.governance {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== সেকশন হেডার ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    color: #4a5a6a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.section-sub-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== ফাউন্ডার সেকশন ===== */
+.founder-section {
+    margin-bottom: 4rem;
+}
+
+.founder-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2.5rem;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(26, 122, 90, 0.1);
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.founder-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.founder-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #e8f0f8, #d0dce8);
+}
+
+.founder-image .placeholder-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: rgba(26, 122, 90, 0.2);
+}
+
+.founder-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.founder-info h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    margin-bottom: 0.25rem;
+}
+
+.founder-info .designation {
+    font-size: 1.1rem;
+    color: #1a7a5a;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.founder-info .quote {
+    font-style: italic;
+    color: #4a5a6a;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding: 1rem 1.5rem;
+    background: rgba(26, 122, 90, 0.04);
+    border-radius: 12px;
+    border-left: 4px solid #1a7a5a;
+    margin: 1rem 0;
+}
+
+.founder-info .bio {
+    color: #3a4a5a;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.founder-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.founder-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(26, 122, 90, 0.08);
+    color: #1a7a5a;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.founder-social a:hover {
+    background: #1a7a5a;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* ===== কমিটি সেকশন ===== */
+.committee-section {
+    margin-bottom: 4rem;
+}
+
+.committee-subtitle {
+    text-align: center;
+    color: #4a5a6a;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.committee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.committee-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.committee-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.committee-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(10, 26, 43, 0.08);
+    border-color: rgba(26, 122, 90, 0.15);
+}
+
+.committee-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #e8f0f8, #d0dce8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(26, 122, 90, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.committee-name {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    margin-bottom: 0.2rem;
+}
+
+.committee-role {
+    font-size: 0.9rem;
+    color: #1a7a5a;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.committee-desc {
+    font-size: 0.85rem;
+    color: #4a5a6a;
+    line-height: 1.6;
+}
+
+/* ===== অর্গানাইজেশন চার্ট ===== */
+.org-chart-section {
+    margin-bottom: 4rem;
+}
+
+.org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.org-chart.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.org-level {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0.5rem 0;
+    position: relative;
+}
+
+.org-level::after {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 1rem;
+    background: rgba(26, 122, 90, 0.2);
+}
+
+.org-level:first-child::after {
+    display: none;
+}
+
+.org-node {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(26, 122, 90, 0.15);
+    text-align: center;
+    min-width: 160px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.org-node:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(26, 122, 90, 0.12);
+    border-color: #1a7a5a;
+}
+
+.org-node .node-icon {
+    font-size: 1.5rem;
+    color: #1a7a5a;
+    margin-bottom: 0.3rem;
+}
+
+.org-node .node-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #0a1a2b;
+}
+
+.org-node .node-sub {
+    font-size: 0.8rem;
+    color: #5a7a8a;
+}
+
+.org-node.level-1 {
+    border-color: #1a7a5a;
+    background: linear-gradient(135deg, #f0faf6, #ffffff);
+}
+
+.org-node.level-2 {
+    border-color: rgba(26, 122, 90, 0.25);
+}
+
+.org-node.level-3 {
+    border-color: rgba(26, 122, 90, 0.15);
+    background: #fafcfc;
+}
+
+.org-connector {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    padding: 0.5rem 0;
+}
+
+.org-connector .line {
+    width: 2px;
+    height: 1.5rem;
+    background: rgba(26, 122, 90, 0.15);
+    position: relative;
+}
+
+.org-connector .line::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(26, 122, 90, 0.2);
+}
+
+/* ===== টাইমলাইন ===== */
+.timeline-section {
+    margin-top: 2rem;
+}
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.timeline.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(26, 122, 90, 0.2), rgba(26, 122, 90, 0.05));
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 2rem 2rem 0;
+    position: relative;
+    width: 50%;
+    margin-left: auto;
+}
+
+.timeline-item:nth-child(odd) {
+    justify-content: flex-start;
+    padding: 0 0 2rem 2rem;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1a7a5a;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 0 4px rgba(26, 122, 90, 0.15);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even)::before {
+    right: -8px;
+}
+
+.timeline-item:nth-child(odd)::before {
+    left: -8px;
+}
+
+.timeline-content {
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    max-width: 400px;
+    width: 100%;
+}
+
+.timeline-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(10, 26, 43, 0.08);
+    border-color: rgba(26, 122, 90, 0.15);
+}
+
+.timeline-year {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a7a5a;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-event {
+    font-weight: 600;
+    color: #0a1a2b;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-desc {
+    font-size: 0.9rem;
+    color: #4a5a6a;
+    line-height: 1.6;
+}
+
+/* ===== অ্যানিমেশন ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.founder-card.visible,
+.committee-card.visible,
+.org-chart.visible,
+.timeline.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ===== রেস্পন্সিভ ===== */
+
+@media (max-width: 1024px) {
+    .founder-card {
+        grid-template-columns: 240px 1fr;
+        gap: 2rem;
+    }
+
+    .founder-image {
+        height: 250px;
+    }
+
+    .committee-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .governance {
+        padding: 3rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .section-sub-title {
+        font-size: 1.5rem;
+    }
+
+    .founder-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .founder-image {
+        height: 200px;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .founder-info h3 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .founder-info .designation {
+        text-align: center;
+    }
+
+    .founder-info .quote {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .founder-social {
+        justify-content: center;
+    }
+
+    .committee-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .committee-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .committee-name {
+        font-size: 1rem;
+    }
+
+    /* টাইমলাইন মোবাইল */
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding: 0 0 2rem 3rem;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .timeline-item:nth-child(odd) {
+        padding: 0 0 2rem 3rem;
+        margin-left: 0;
+    }
+
+    .timeline-item::before {
+        left: 12px !important;
+        right: auto !important;
+    }
+
+    .timeline-content {
+        max-width: 100%;
+    }
+
+    /* অর্গানাইজেশন চার্ট মোবাইল */
+    .org-level {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .org-node {
+        min-width: 140px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .org-connector {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .committee-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+
+    .committee-card {
+        padding: 1.2rem;
+    }
+
+    .committee-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+
+    .committee-name {
+        font-size: 0.9rem;
+    }
+
+    .committee-role {
+        font-size: 0.8rem;
+    }
+
+    .committee-desc {
+        font-size: 0.75rem;
+    }
+
+    .founder-image {
+        height: 180px;
+        max-width: 180px;
+    }
+
+    .founder-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .founder-info .designation {
+        font-size: 1rem;
+    }
+
+    .founder-info .quote {
+        font-size: 0.9rem;
+    }
+
+    .founder-info .bio {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content {
+        padding: 1rem 1.2rem;
+    }
+
+    .timeline-year {
+        font-size: 1rem;
+    }
+
+    .timeline-event {
+        font-size: 0.9rem;
+    }
+
+    .timeline-desc {
+        font-size: 0.8rem;
+    }
+
+    .org-node {
+        padding: 0.8rem 1.2rem;
+        min-width: 120px;
+    }
+
+    .org-node .node-title {
+        font-size: 0.9rem;
+    }
+
+    .org-node .node-sub {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== অ্যাক্সেসিবিলিটি ===== */
+@media (prefers-reduced-motion: reduce) {
+    .founder-card,
+    .committee-card,
+    .org-chart,
+    .timeline {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .founder-card:hover,
+    .committee-card:hover,
+    .org-node:hover,
+    .timeline-content:hover {
+        transform: none !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .founder-card,
+    .committee-card,
+    .org-node,
+    .timeline-content {
+        border: 2px solid #0a1a2b;
+    }
+
+    .founder-badge {
+        background: #0a1a2b;
+    }
+
+    .org-node.level-1 {
+        border-color: #0a1a2b;
+        background: #ffffff;
+    }
+}

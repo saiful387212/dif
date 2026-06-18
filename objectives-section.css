@@ -1,0 +1,521 @@
+/* objectives-section.css */
+/* ===== অবজেক্টিভস সেকশন ===== */
+.objectives {
+    padding: 5rem 1.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.objectives::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(26, 122, 90, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.objectives::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(45, 155, 122, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.objectives-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== সেকশন হেডার ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    color: #4a5a6a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== অবজেক্টিভস গ্রিড ===== */
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ===== কার্ড ডিজাইন ===== */
+.objective-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* কার্ডের গ্লো ইফেক্ট */
+.objective-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(26, 122, 90, 0.03) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.objective-card:hover::before {
+    opacity: 1;
+}
+
+/* কার্ডের উপরের বর্ডার গ্লো */
+.objective-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1a7a5a, transparent);
+    opacity: 0;
+    transform: scaleX(0.3);
+    transition: all 0.5s ease;
+}
+
+.objective-card:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* কার্ড শাইন ইফেক্ট */
+.card-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.objective-card:hover .card-shine {
+    transform: rotate(45deg) translateX(100%);
+}
+
+/* কার্ড আইকন */
+.card-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(26, 122, 90, 0.1), rgba(45, 155, 122, 0.05));
+    border-radius: 16px;
+    color: #1a7a5a;
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.objective-card:hover .card-icon {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 12px 32px rgba(26, 122, 90, 0.25);
+}
+
+/* কার্ড কন্টেন্ট */
+.card-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.card-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    margin-bottom: 0.6rem;
+    transition: color 0.3s ease;
+}
+
+.objective-card:hover .card-title {
+    color: #1a7a5a;
+}
+
+.card-text {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #4a5a6a;
+    margin: 0;
+}
+
+/* কার্ড নাম্বার */
+.card-number {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.2rem;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(26, 122, 90, 0.06);
+    line-height: 1;
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.objective-card:hover .card-number {
+    color: rgba(26, 122, 90, 0.12);
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* কার্ড হোভার ইফেক্ট - লিফট */
+.objective-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(10, 26, 43, 0.1);
+    border-color: rgba(26, 122, 90, 0.15);
+}
+
+/* বিভিন্ন কার্ডের জন্য ডিলে অ্যানিমেশন */
+.objective-card:nth-child(1) { transition-delay: 0.05s; }
+.objective-card:nth-child(2) { transition-delay: 0.1s; }
+.objective-card:nth-child(3) { transition-delay: 0.15s; }
+.objective-card:nth-child(4) { transition-delay: 0.2s; }
+.objective-card:nth-child(5) { transition-delay: 0.25s; }
+.objective-card:nth-child(6) { transition-delay: 0.3s; }
+.objective-card:nth-child(7) { transition-delay: 0.35s; }
+.objective-card:nth-child(8) { transition-delay: 0.4s; }
+
+/* ===== ফুটার ডেকোরেশন ===== */
+.objectives-footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.footer-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.deco-line {
+    flex: 1;
+    max-width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(26, 122, 90, 0.2), transparent);
+}
+
+.deco-text {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #5a7a8a;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* ===== অ্যানিমেশন ===== */
+[data-aos] {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+[data-aos="flip-up"] {
+    transform: perspective(800px) rotateX(15deg) translateY(20px);
+    opacity: 0;
+}
+
+[data-aos="flip-up"].aos-animate {
+    transform: perspective(800px) rotateX(0) translateY(0);
+    opacity: 1;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translateY(0);
+}
+
+/* ===== রেস্পন্সিভ ডিজাইন ===== */
+
+/* বড় ট্যাবলেট */
+@media (max-width: 1200px) {
+    .objectives-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* ট্যাবলেট */
+@media (max-width: 992px) {
+    .objectives-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+
+    .objective-card {
+        min-height: 230px;
+        padding: 1.8rem 1.2rem;
+    }
+}
+
+/* মোবাইল */
+@media (max-width: 768px) {
+    .objectives {
+        padding: 3.5rem 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .objectives-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .objective-card {
+        padding: 1.5rem 1rem;
+        min-height: 200px;
+        border-radius: 16px;
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .card-number {
+        font-size: 2.2rem;
+        bottom: 0.75rem;
+        right: 0.8rem;
+    }
+
+    .footer-decoration {
+        gap: 1rem;
+    }
+
+    .deco-line {
+        max-width: 60px;
+    }
+
+    .deco-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* অতিরিক্ত ছোট মোবাইল */
+@media (max-width: 480px) {
+    .objectives-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+
+    .objective-card {
+        padding: 1.2rem 0.8rem;
+        min-height: 180px;
+        border-radius: 14px;
+    }
+
+    .card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .card-text {
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+
+    .card-number {
+        font-size: 1.8rem;
+        bottom: 0.5rem;
+        right: 0.6rem;
+    }
+}
+
+/* খুব ছোট মোবাইল (৩২০px) */
+@media (max-width: 360px) {
+    .objectives-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .objective-card {
+        min-height: 160px;
+        padding: 1rem;
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+
+    .card-number {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===== অ্যাক্সেসিবিলিটি ===== */
+@media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .objective-card {
+        transition: none !important;
+    }
+
+    .objective-card:hover {
+        transform: none !important;
+    }
+
+    .objective-card::before,
+    .objective-card::after {
+        display: none !important;
+    }
+
+    .card-shine {
+        display: none !important;
+    }
+
+    .objective-card:hover .card-icon {
+        transform: none !important;
+    }
+}
+
+/* উচ্চ কন্ট্রাস্ট মোড */
+@media (prefers-contrast: high) {
+    .objective-card {
+        border: 2px solid #0a1a2b;
+    }
+
+    .objective-card::after {
+        background: #0a1a2b;
+        opacity: 1;
+    }
+
+    .card-icon {
+        background: #1a7a5a;
+        color: #ffffff;
+    }
+
+    .objective-card:hover .card-icon {
+        background: #0a1a2b;
+    }
+
+    .card-number {
+        color: rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* ===== অ্যানিমেশন সাপোর্ট ===== */
+@media (prefers-reduced-motion: no-preference) {
+    .objective-card {
+        will-change: transform, box-shadow;
+    }
+}

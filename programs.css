@@ -1,0 +1,588 @@
+/* programs.css */
+/* ===== রিসেট & বেসিক ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    background: #f8fafc;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== প্রোগ্রামস সেকশন ===== */
+.programs {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.programs::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(26, 122, 90, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ===== সেকশন হেডার ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    color: #4a5a6a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== প্রোগ্রাম গ্রিড ===== */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== প্রোগ্রাম কার্ড ===== */
+.program-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.program-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* কার্ডের উপরের বর্ডার */
+.program-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1a7a5a, #2d9b7a, #1a7a5a);
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.program-card:hover::before {
+    opacity: 1;
+    animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+}
+
+/* শাইন ইফেক্ট */
+.program-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.program-card:hover .program-shine {
+    transform: rotate(45deg) translateX(100%);
+}
+
+/* প্রোগ্রাম আইকন */
+.program-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(26, 122, 90, 0.1), rgba(45, 155, 122, 0.05));
+    border-radius: 16px;
+    color: #1a7a5a;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.program-card:hover .program-icon {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    transform: scale(1.1) rotate(-8deg);
+    box-shadow: 0 12px 32px rgba(26, 122, 90, 0.25);
+}
+
+/* প্রোগ্রাম কন্টেন্ট */
+.program-content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.program-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.program-card:hover .program-title {
+    color: #1a7a5a;
+}
+
+.program-text {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4a5a6a;
+    margin-bottom: 1.2rem;
+}
+
+/* প্রোগ্রাম স্ট্যাটস */
+.program-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.program-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: #5a7a8a;
+    background: rgba(26, 122, 90, 0.04);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+}
+
+.program-stats span i {
+    color: #1a7a5a;
+    font-size: 0.8rem;
+}
+
+/* প্রোগ্রাম লিংক */
+.program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #1a7a5a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.program-link i {
+    transition: transform 0.3s ease;
+}
+
+.program-link:hover {
+    color: #0f3b4c;
+}
+
+.program-link:hover i {
+    transform: translateX(6px);
+}
+
+/* প্রোগ্রাম নাম্বার */
+.program-number {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.2rem;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(26, 122, 90, 0.05);
+    line-height: 1;
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.program-card:hover .program-number {
+    color: rgba(26, 122, 90, 0.1);
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* ===== ফিল্টার বাটন ===== */
+.programs-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.5rem;
+    background: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    border-radius: 50px;
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a5a6a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: rgba(26, 122, 90, 0.3);
+    color: #1a7a5a;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    border-color: #1a7a5a;
+    box-shadow: 0 4px 16px rgba(26, 122, 90, 0.25);
+}
+
+/* ===== সিটিএ সেকশন ===== */
+.programs-cta {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    background: linear-gradient(135deg, rgba(26, 122, 90, 0.05), rgba(45, 155, 122, 0.02));
+    border-radius: 24px;
+    border: 1px solid rgba(26, 122, 90, 0.1);
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.programs-cta h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+}
+
+.programs-cta p {
+    color: #4a5a6a;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2.5rem;
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    border-radius: 50px;
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(26, 122, 90, 0.25);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26, 122, 90, 0.35);
+    background: linear-gradient(135deg, #15694d, #248a6a);
+}
+
+.btn-cta i {
+    transition: transform 0.3s ease;
+}
+
+.btn-cta:hover i {
+    transform: translateX(6px);
+}
+
+/* ===== রেস্পন্সিভ ===== */
+
+/* ট্যাবলেট */
+@media (max-width: 1024px) {
+    .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .program-card {
+        padding: 1.8rem 1.5rem;
+    }
+}
+
+/* মোবাইল */
+@media (max-width: 768px) {
+    .programs {
+        padding: 3.5rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .programs-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .program-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .program-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .program-title {
+        font-size: 1.1rem;
+    }
+
+    .program-text {
+        font-size: 0.85rem;
+    }
+
+    .program-stats {
+        gap: 0.8rem;
+    }
+
+    .program-stats span {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .program-number {
+        font-size: 2.5rem;
+        bottom: 0.75rem;
+        right: 0.8rem;
+    }
+
+    .programs-filter {
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .programs-cta {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .programs-cta h3 {
+        font-size: 1.5rem;
+    }
+
+    .programs-cta p {
+        font-size: 0.95rem;
+    }
+
+    .btn-cta {
+        padding: 0.75rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* ছোট মোবাইল */
+@media (max-width: 576px) {
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .program-card {
+        padding: 1.2rem 1rem;
+    }
+
+    .program-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .program-title {
+        font-size: 1.05rem;
+    }
+
+    .program-text {
+        font-size: 0.85rem;
+    }
+
+    .program-number {
+        font-size: 2rem;
+    }
+
+    .programs-filter {
+        gap: 0.4rem;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .programs-cta {
+        padding: 2rem 1rem;
+    }
+
+    .programs-cta h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* অ্যাক্সেসিবিলিটি */
+@media (prefers-reduced-motion: reduce) {
+    .program-card {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .program-card:hover {
+        transform: none !important;
+    }
+
+    .program-card::before {
+        animation: none !important;
+    }
+
+    .program-shine {
+        display: none !important;
+    }
+
+    .program-link i {
+        transition: none !important;
+    }
+
+    .btn-cta {
+        transition: none !important;
+    }
+
+    .btn-cta:hover {
+        transform: none !important;
+    }
+}
+
+/* উচ্চ কন্ট্রাস্ট */
+@media (prefers-contrast: high) {
+    .program-card {
+        border: 2px solid #0a1a2b;
+    }
+
+    .program-card::before {
+        background: #0a1a2b !important;
+        opacity: 1 !important;
+    }
+
+    .program-icon {
+        background: #1a7a5a;
+        color: #ffffff;
+    }
+
+    .program-card:hover .program-icon {
+        background: #0a1a2b;
+    }
+
+    .filter-btn.active {
+        background: #0a1a2b;
+    }
+
+    .btn-cta {
+        background: #0a1a2b;
+        box-shadow: none;
+    }
+}

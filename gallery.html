@@ -1,0 +1,260 @@
+<!-- gallery.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>গ্যালারি - দারুল ইত্তিহাদ ফাউন্ডেশন</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="gallery.css" />
+</head>
+<body>
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <!-- সেকশন হেডার -->
+            <div class="section-header">
+                <span class="section-tag">আমাদের চিত্রশালা</span>
+                <h2 class="section-title">গ্যালারি</h2>
+                <p class="section-subtitle">
+                    দারুল ইত্তিহাদ ফাউন্ডেশনের বিভিন্ন কার্যক্রম, অনুষ্ঠান ও উদ্যোগের 
+                    মুহূর্তগুলো আমাদের গ্যালারিতে সংরক্ষিত রয়েছে
+                </p>
+            </div>
+
+            <!-- ফিল্টার বাটন -->
+            <div class="gallery-filter" id="galleryFilter">
+                <button class="filter-btn active" data-filter="all">সকল</button>
+                <button class="filter-btn" data-filter="programs">কর্মসূচি</button>
+                <button class="filter-btn" data-filter="events">অনুষ্ঠান</button>
+                <button class="filter-btn" data-filter="training">প্রশিক্ষণ</button>
+                <button class="filter-btn" data-filter="social">সমাজকল্যাণ</button>
+                <button class="filter-btn" data-filter="cultural">সাংস্কৃতিক</button>
+            </div>
+
+            <!-- গ্যালারি গ্রিড -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- আইটেম ১ -->
+                <div class="gallery-item" data-category="programs" data-delay="100">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eশিক্ষা কর্মসূচি%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop"
+                     alt="শিক্ষা কর্মসূচি" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>শিক্ষা কর্মসূচি</h3>
+                            <p>প্রান্তিক শিশুদের জন্য শিক্ষা প্রকল্প</p>
+                            <span class="gallery-category">কর্মসূচি</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ২ -->
+                <div class="gallery-item" data-category="events" data-delay="150">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eবার্ষিক সম্মেলন%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop"
+                     alt="বার্ষিক সম্মেলন" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>বার্ষিক সম্মেলন</h3>
+                            <p>২০২৩ সালের বার্ষিক সাধারণ সভা</p>
+                            <span class="gallery-category">অনুষ্ঠান</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৩ -->
+                <div class="gallery-item" data-category="training" data-delay="200">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eযুব প্রশিক্ষণ%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop"
+                     alt="যুব প্রশিক্ষণ" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>যুব প্রশিক্ষণ</h3>
+                            <p>দক্ষতা উন্নয়ন কর্মশালা</p>
+                            <span class="gallery-category">প্রশিক্ষণ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৪ -->
+                <div class="gallery-item" data-category="social" data-delay="250">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eসমাজসেবা%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop"
+                     alt="সমাজসেবা" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>সমাজসেবা</h3>
+                            <p>শীতার্তদের মাঝে কম্বল বিতরণ</p>
+                            <span class="gallery-category">সমাজকল্যাণ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৫ -->
+                <div class="gallery-item" data-category="cultural" data-delay="300">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eসাংস্কৃতিক অনুষ্ঠান%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=300&fit=crop"
+                     alt="সাংস্কৃতিক অনুষ্ঠান" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>সাংস্কৃতিক অনুষ্ঠান</h3>
+                            <p>বাংলা নববর্ষ উদযাপন</p>
+                            <span class="gallery-category">সাংস্কৃতিক</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৬ -->
+                <div class="gallery-item" data-category="programs" data-delay="350">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eস্বাস্থ্য সেবা%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop"
+                     alt="স্বাস্থ্য সেবা" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>স্বাস্থ্য সেবা</h3>
+                            <p>বিনামূল্যে স্বাস্থ্য ক্যাম্প</p>
+                            <span class="gallery-category">কর্মসূচি</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৭ -->
+                <div class="gallery-item" data-category="events" data-delay="400">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eমিলনমেলা%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=300&fit=crop"
+                     alt="মিলনমেলা" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>মিলনমেলা</h3>
+                            <p>সদস্যদের বার্ষিক মিলনমেলা</p>
+                            <span class="gallery-category">অনুষ্ঠান</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৮ -->
+                <div class="gallery-item" data-category="training" data-delay="450">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eকারিগরি প্রশিক্ষণ%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop"
+                     alt="কারিগরি প্রশিক্ষণ" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>কারিগরি প্রশিক্ষণ</h3>
+                            <p>কম্পিউটার ও আইটি প্রশিক্ষণ</p>
+                            <span class="gallery-category">প্রশিক্ষণ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ৯ -->
+                <div class="gallery-item" data-category="social" data-delay="500">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eখাদ্য সহায়তা%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400&h=300&fit=crop"
+                     alt="খাদ্য সহায়তা" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>খাদ্য সহায়তা</h3>
+                            <p>দুস্থদের মাঝে খাদ্য বিতরণ</p>
+                            <span class="gallery-category">সমাজকল্যাণ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ১০ -->
+                <div class="gallery-item" data-category="cultural" data-delay="550">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eসাহিত্য আসর%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop"
+                     alt="সাহিত্য আসর" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>সাহিত্য আসর</h3>
+                            <p>কবিতা ও গল্প পাঠ</p>
+                            <span class="gallery-category">সাংস্কৃতিক</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ১১ -->
+                <div class="gallery-item" data-category="programs" data-delay="600">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eপরিবেশ প্রকল্প%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop"
+                     alt="পরিবেশ প্রকল্প" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>পরিবেশ প্রকল্প</h3>
+                            <p>গাছ লাগানো ও পরিবেশ সচেতনতা</p>
+                            <span class="gallery-category">কর্মসূচি</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- আইটেম ১২ -->
+                <div class="gallery-item" data-category="events" data-delay="650">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23e8f0f8'/%3E%3Ctext x='50%25' y='50%25' font-family='Noto Sans Bengali' font-size='20' fill='%236a7a8a' text-anchor='middle' dy='.3em'%3Eপুরস্কার বিতরণ%3C/text%3E%3C/svg%3E"
+                     data-src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop"
+                     alt="পুরস্কার বিতরণ" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h3>পুরস্কার বিতরণ</h3>
+                            <p>মেধাবী শিক্ষার্থীদের সংবর্ধনা</p>
+                            <span class="gallery-category">অনুষ্ঠান</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- লোড মোর বাটন -->
+            <div class="gallery-loadmore">
+                <button class="btn-loadmore" id="loadMoreBtn">
+                    <i class="fas fa-sync"></i>
+                    <span>আরও দেখুন</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== লাইটবক্স মডাল ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Gallery Image" id="lightboxImage" />
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+                <span id="lightboxCategory"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!-- membership-section.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সদস্যপদ - দারুল ইত্তিহাদ ফাউন্ডেশন</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* ===== রিসেট ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            background: #f8fafc;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== মেম্বারশিপ সেকশন ===== */
+        .membership {
+            padding: 3rem 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== সেকশন হেডার ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1a7a5a;
+            background: rgba(26, 122, 90, 0.1);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #0a1a2b;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            font-size: 1.1rem;
+            color: #4a5a6a;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== মেম্বারশিপ কার্ড গ্রিড ===== */
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* ===== কার্ড ডিজাইন ===== */
+        .membership-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .membership-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* হাইলাইটেড কার্ড */
+        .membership-card.featured {
+            border-color: #1a7a5a;
+            background: linear-gradient(180deg, #ffffff 0%, #f0faf6 100%);
+            transform: scale(1.02);
+        }
+
+        .membership-card.featured::before {
+            content: 'জনপ্রিয়';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            letter-spacing: 0.04em;
+        }
+
+        .membership-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(10, 26, 43, 0.1);
+            border-color: rgba(26, 122, 90, 0.2);
+        }
+
+        .membership-card.featured:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* কার্ড আইকন */
+        .card-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, rgba(26, 122, 90, 0.1), rgba(45, 155, 122, 0.05));
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: #1a7a5a;
+            transition: all 0.4s ease;
+        }
+
+        .membership-card:hover .card-icon-wrapper {
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 12px 32px rgba(26, 122, 90, 0.25);
+        }
+
+        /* কার্ড কন্টেন্ট */
+        .card-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a1a2b;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #5a7a8a;
+            margin-bottom: 1rem;
+        }
+
+        .card-price {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a7a5a;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5a7a8a;
+        }
+
+        .card-duration {
+            font-size: 0.85rem;
+            color: #5a7a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ফিচার লিস্ট */
+        .card-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #3a4a5a;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .card-features li:last-child {
+            border-bottom: none;
+        }
+
+        .card-features li i {
+            color: #1a7a5a;
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .card-features li .fa-times {
+            color: #e74c3c;
+            opacity: 0.4;
+        }
+
+        /* জয়েন বাটন */
+        .btn-join {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(26, 122, 90, 0.2);
+            margin-top: 1rem;
+        }
+
+        .btn-join:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(26, 122, 90, 0.3);
+            background: linear-gradient(135deg, #15694d, #248a6a);
+        }
+
+        .btn-join i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-join:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ===== তুলনামূলক টেবিল ===== */
+        .comparison-section {
+            margin-top: 2rem;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            overflow-x: auto;
+        }
+
+        .comparison-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0a1a2b;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            min-width: 700px;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+        }
+
+        .comparison-table th {
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .comparison-table th:first-child {
+            border-radius: 12px 0 0 0;
+            text-align: left;
+        }
+
+        .comparison-table th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            color: #3a4a5a;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #0a1a2b;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: rgba(26, 122, 90, 0.04);
+        }
+
+        .comparison-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .check {
+            color: #1a7a5a;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table .cross {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            opacity: 0.4;
+        }
+
+        .comparison-table .highlight-cell {
+            background: rgba(26, 122, 90, 0.06);
+            font-weight: 600;
+            color: #1a7a5a;
+        }
+
+        /* ===== CTA সেকশন ===== */
+        .membership-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 122, 90, 0.05), rgba(45, 155, 122, 0.02));
+            border-radius: 20px;
+            border: 1px solid rgba(26, 122, 90, 0.1);
+        }
+
+        .membership-cta h3 {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.8rem;
+            color: #0a1a2b;
+            margin-bottom: 0.5rem;
+        }
+
+        .membership-cta p {
+            color: #4a5a6a;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            box-shadow: 0 8px 32px rgba(26, 122, 90, 0.25);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(26, 122, 90, 0.35);
+            background: linear-gradient(135deg, #15694d, #248a6a);
+        }
+
+        .btn-cta i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover i {
+            transform: translateX(6px);
+        }
+
+        /* ===== রেস্পন্সিভ ===== */
+
+        @media (max-width: 1024px) {
+            .membership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .membership-card.featured {
+                transform: scale(1);
+            }
+
+            .membership-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .comparison-table {
+                min-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .membership {
+                padding: 2rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .membership-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .membership-card {
+                padding: 2rem 1.5rem;
+                min-height: auto;
+            }
+
+            .card-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-price {
+                font-size: 1.6rem;
+            }
+
+            .comparison-section {
+                padding: 1.5rem;
+            }
+
+            .comparison-title {
+                font-size: 1.4rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .membership-cta {
+                padding: 2rem 1.5rem;
+            }
+
+            .membership-cta h3 {
+                font-size: 1.5rem;
+            }
+
+            .btn-cta {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .membership-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .membership-card.featured {
+                transform: scale(1);
+                order: -1;
+            }
+
+            .membership-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .comparison-section {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .comparison-table {
+                min-width: 500px;
+                font-size: 0.8rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .membership-cta h3 {
+                font-size: 1.3rem;
+            }
+
+            .membership-cta p {
+                font-size: 0.95rem;
+            }
+
+            .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .card-features li {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== অ্যাক্সেসিবিলিটি ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .membership-card {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .membership-card:hover {
+                transform: none !important;
+            }
+
+            .membership-card.featured {
+                transform: none !important;
+            }
+
+            .btn-join,
+            .btn-cta {
+                transition: none !important;
+            }
+
+            .btn-join:hover,
+            .btn-cta:hover {
+                transform: none !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .membership-card {
+                border: 2px solid #0a1a2b;
+            }
+
+            .membership-card.featured {
+                border-color: #1a7a5a;
+                background: #ffffff;
+            }
+
+            .membership-card.featured::before {
+                background: #0a1a2b;
+            }
+
+            .btn-join,
+            .btn-cta {
+                background: #0a1a2b;
+                box-shadow: none;
+            }
+
+            .comparison-table thead {
+                background: #0a1a2b;
+            }
+
+            .comparison-table .highlight-cell {
+                background: rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        /* ===== অ্যানিমেশন ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .membership-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="membership" id="membership">
+        <div class="container">
+            <!-- সেকশন হেডার -->
+            <div class="section-header">
+                <span class="section-tag">আমাদের সদস্যপদ</span>
+                <h2 class="section-title">সদস্যপদ বিভাগ</h2>
+                <p class="section-subtitle">
+                    দারুল ইত্তিহাদ ফাউন্ডেশনের বিভিন্ন সদস্যপদ বিভাগে যোগদান করে 
+                    সমাজ উন্নয়নে অংশগ্রহণ করুন
+                </p>
+            </div>
+
+            <!-- মেম্বারশিপ কার্ড -->
+            <div class="membership-grid" id="membershipGrid">
+                <!-- কার্ড ১: সাধারণ সদস্য -->
+                <div class="membership-card" data-delay="100">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="card-title">সাধারণ সদস্য</h3>
+                    <p class="card-subtitle">মৌলিক সদস্যপদ</p>
+                    <div class="card-price">৫০০ <span>টাকা</span></div>
+                    <div class="card-duration">বার্ষিক</div>
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> ফাউন্ডেশনের সকল কার্যক্রমে অংশগ্রহণ</li>
+                        <li><i class="fas fa-check"></i> নিয়মিত আপডেট ও নিউজলেটার</li>
+                        <li><i class="fas fa-check"></i> সেমিনার ও ওয়ার্কশপে অংশগ্রহণ</li>
+                        <li><i class="fas fa-check"></i> ভোট দেওয়ার অধিকার</li>
+                        <li><i class="fas fa-times"></i> বিশেষ সুবিধাপ্রাপ্ত প্রকল্প</li>
+                    </ul>
+                    <button class="btn-join" onclick="openJoinForm('সাধারণ সদস্য')">
+                        <span>যোগ দিন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- কার্ড ২: আজীবন সদস্য (হাইলাইটেড) -->
+                <div class="membership-card featured" data-delay="200">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3 class="card-title">আজীবন সদস্য</h3>
+                    <p class="card-subtitle">স্থায়ী সদস্যপদ</p>
+                    <div class="card-price">১০,০০০ <span>টাকা</span></div>
+                    <div class="card-duration">আজীবন</div>
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> সকল সাধারণ সদস্য সুবিধা</li>
+                        <li><i class="fas fa-check"></i> আজীবন সদস্য কার্ড</li>
+                        <li><i class="fas fa-check"></i> বিশেষ অনুষ্ঠানে অগ্রাধিকার</li>
+                        <li><i class="fas fa-check"></i> পরিচালনা পরিষদে নির্বাচিত হওয়ার যোগ্যতা</li>
+                        <li><i class="fas fa-check"></i> ফাউন্ডেশনের বিশেষ প্রকল্পে অগ্রাধিকার</li>
+                    </ul>
+                    <button class="btn-join" onclick="openJoinForm('আজীবন সদস্য')">
+                        <span>যোগ দিন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- কার্ড ৩: দাতা সদস্য -->
+                <div class="membership-card" data-delay="300">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="card-title">দাতা সদস্য</h3>
+                    <p class="card-subtitle">দান ও সহায়তায় অংশগ্রহণ</p>
+                    <div class="card-price">২,৫০০ <span>টাকা</span></div>
+                    <div class="card-duration">বার্ষিক</div>
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> সকল সাধারণ সদস্য সুবিধা</li>
+                        <li><i class="fas fa-check"></i> দাতা সদস্য হিসাবে স্বীকৃতি</li>
+                        <li><i class="fas fa-check"></i> কর ছাড়ের সুবিধা</li>
+                        <li><i class="fas fa-check"></i> বিশেষ দাতা সম্মেলনে অংশগ্রহণ</li>
+                        <li><i class="fas fa-check"></i> ফাউন্ডেশনের রিপোর্ট প্রাপ্তি</li>
+                    </ul>
+                    <button class="btn-join" onclick="openJoinForm('দাতা সদস্য')">
+                        <span>যোগ দিন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- কার্ড ৪: স্থায়ী ব্যবসায়ী সদস্য -->
+                <div class="membership-card" data-delay="400">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="card-title">স্থায়ী ব্যবসায়ী সদস্য</h3>
+                    <p class="card-subtitle">ব্যবসায়িক প্রতিষ্ঠানের জন্য</p>
+                    <div class="card-price">১৫,০০০ <span>টাকা</span></div>
+                    <div class="card-duration">বার্ষিক</div>
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> প্রতিষ্ঠানের সদস্যপদ</li>
+                        <li><i class="fas fa-check"></i> ৫ জন প্রতিনিধি মনোনয়নের সুযোগ</li>
+                        <li><i class="fas fa-check"></i> ব্যবসায়িক নেটওয়ার্কিং সুবিধা</li>
+                        <li><i class="fas fa-check"></i> বিশেষ ব্যবসায়িক সেমিনার</li>
+                        <li><i class="fas fa-check"></i> ফাউন্ডেশনের লোগো ব্যবহারের অধিকার</li>
+                    </ul>
+                    <button class="btn-join" onclick="openJoinForm('স্থায়ী ব্যবসায়ী সদস্য')">
+                        <span>যোগ দিন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- কার্ড ৫: অস্থায়ী ব্যবসায়ী সদস্য -->
+                <div class="membership-card" data-delay="500">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="card-title">অস্থায়ী ব্যবসায়ী সদস্য</h3>
+                    <p class="card-subtitle">স্বল্পমেয়াদী ব্যবসায়িক সদস্যপদ</p>
+                    <div class="card-price">৫,০০০ <span>টাকা</span></div>
+                    <div class="card-duration">৬ মাস</div>
+                    <ul class="card-features">
+                        <li><i class="fas fa-check"></i> প্রতিষ্ঠানের অস্থায়ী সদস্যপদ</li>
+                        <li><i class="fas fa-check"></i> ২ জন প্রতিনিধি মনোনয়নের সুযোগ</li>
+                        <li><i class="fas fa-check"></i> ব্যবসায়িক নেটওয়ার্কিং সুবিধা</li>
+                        <li><i class="fas fa-check"></i> সীমিত সেমিনার অংশগ্রহণ</li>
+                        <li><i class="fas fa-times"></i> ফাউন্ডেশনের লোগো ব্যবহার</li>
+                    </ul>
+                    <button class="btn-join" onclick="openJoinForm('অস্থায়ী ব্যবসায়ী সদস্য')">
+                        <span>যোগ দিন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- তুলনামূলক টেবিল -->
+            <div class="comparison-section">
+                <h3 class="comparison-title">সদস্যপদ তুলনামূলক চার্ট</h3>
+                <div class="table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>সুবিধাসমূহ</th>
+                                <th>সাধারণ</th>
+                                <th>আজীবন</th>
+                                <th>দাতা</th>
+                                <th>স্থায়ী ব্যবসায়ী</th>
+                                <th>অস্থায়ী ব্যবসায়ী</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>বার্ষিক ফি</td>
+                                <td>৫০০ টাকা</td>
+                                <td class="highlight-cell">১০,০০০ টাকা (আজীবন)</td>
+                                <td>২,৫০০ টাকা</td>
+                                <td>১৫,০০০ টাকা</td>
+                                <td>৫,০০০ টাকা</td>
+                            </tr>
+                            <tr>
+                                <td>মেয়াদ</td>
+                                <td>১ বছর</td>
+                                <td class="highlight-cell">আজীবন</td>
+                                <td>১ বছর</td>
+                                <td>১ বছর</td>
+                                <td>৬ মাস</td>
+                            </tr>
+                            <tr>
+                                <td>কার্যক্রমে অংশগ্রহণ</td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>ভোট দেওয়ার অধিকার</td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                            </tr>
+                            <tr>
+                                <td>পরিচালনা পরিষদে নির্বাচন</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                            </tr>
+                            <tr>
+                                <td>বিশেষ প্রকল্পে অগ্রাধিকার</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                            </tr>
+                            <tr>
+                                <td>ব্যবসায়িক নেটওয়ার্কিং</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>কর ছাড়ের সুবিধা</td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-check check"></i></td>
+                                <td><i class="fas fa-times cross"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CTA সেকশন -->
+            <div class="membership-cta">
+                <h3>আজই যোগ দিন দারুল ইত্তিহাদ ফাউন্ডেশনে</h3>
+                <p>
+                    সমাজ উন্নয়নের এই যাত্রায় আপনার অংশগ্রহণ আমাদের শক্তি। 
+                    সঠিক সদস্যপদ নির্বাচন করুন এবং পরিবর্তনের অংশ হয়ে উঠুন।
+                </p>
+                <button class="btn-cta" onclick="openJoinForm()">
+                    <span>সদস্য হোন</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ============================================================
+        //  membership.js — কার্ড অ্যানিমেশন ও জয়েন ফর্ম
+        // ============================================================
+        (function() {
+            'use strict';
+
+            // ===== ১. কার্ড অ্যানিমেশন =====
+            const cards = document.querySelectorAll('.membership-card');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, delay);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                cards.forEach(card => {
+                    observer.observe(card);
+                });
+            } else {
+                cards.forEach(card => {
+                    card.classList.add('visible');
+                });
+            }
+
+            // ===== ২. জয়েন ফর্ম =====
+            window.openJoinForm = function(membershipType) {
+                const type = membershipType || 'সদস্য';
+                
+                // অ্যালার্ট (প্রোডাকশনে মডাল ব্যবহার করবেন)
+                alert(`আপনি "${type}" সদস্যপদে যোগ দিতে চাচ্ছেন।\n\nশীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।\n\nধন্যবাদ!`);
+                
+                // এখানে আপনি মডাল খুলতে পারেন বা ফর্ম পেজে রিডাইরেক্ট করতে পারেন
+                console.log(`✅ সদস্যপদ নির্বাচন: ${type}`);
+            };
+
+            // ===== ৩. বাটনে ক্লিক অ্যানিমেশন =====
+            const joinButtons = document.querySelectorAll('.btn-join, .btn-cta');
+            joinButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // রিপল ইফেক্ট (ঐচ্ছিক)
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255,255,255,0.4)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                    ripple.style.width = '100px';
+                    ripple.style.height = '100px';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    const rect = btn.getBoundingClientRect();
+                    ripple.style.left = (e.clientX - rect.left - 50) + 'px';
+                    ripple.style.top = (e.clientY - rect.top - 50) + 'px';
+                    
+                    btn.style.position = 'relative';
+                    btn.style.overflow = 'hidden';
+                    btn.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // ===== ৪. রেস্পন্সিভ টেবিল স্ক্রল =====
+            const tableWrapper = document.querySelector('.table-wrapper');
+            if (tableWrapper) {
+                //

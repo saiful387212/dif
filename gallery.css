@@ -1,0 +1,589 @@
+/* gallery.css */
+/* ===== রিসেট & বেসিক ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    background: #f8fafc;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== গ্যালারি সেকশন ===== */
+.gallery {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== সেকশন হেডার ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.1);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #0a1a2b;
+    margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    color: #4a5a6a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== ফিল্টার বাটন ===== */
+.gallery-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.5rem;
+    background: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    border-radius: 50px;
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a5a6a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: rgba(26, 122, 90, 0.3);
+    color: #1a7a5a;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #ffffff;
+    border-color: #1a7a5a;
+    box-shadow: 0 4px 16px rgba(26, 122, 90, 0.25);
+}
+
+/* ===== গ্যালারি গ্রিড ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ===== গ্যালারি আইটেম ===== */
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    background: #e8f0f8;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* ওভারলে */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(10, 26, 43, 0.3), rgba(10, 26, 43, 0.8));
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    color: #ffffff;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.overlay-content i {
+    font-size: 2rem;
+    color: #4ade80;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.overlay-content h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.overlay-content p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: rgba(74, 222, 128, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    color: #4ade80;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ফিল্টার অ্যানিমেশন */
+.gallery-item.hidden {
+    display: none;
+}
+
+/* ===== লোড মোর বাটন ===== */
+.gallery-loadmore {
+    text-align: center;
+}
+
+.btn-loadmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 2.5rem;
+    background: #ffffff;
+    border: 2px solid rgba(26, 122, 90, 0.2);
+    border-radius: 50px;
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a7a5a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-loadmore:hover {
+    background: #1a7a5a;
+    color: #ffffff;
+    border-color: #1a7a5a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(26, 122, 90, 0.25);
+}
+
+.btn-loadmore i {
+    transition: transform 0.3s ease;
+}
+
+.btn-loadmore:hover i {
+    transform: rotate(180deg);
+}
+
+/* ===== লাইটবক্স ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.lightbox.active {
+    display: flex;
+    animation: lightboxFade 0.3s ease;
+}
+
+@keyframes lightboxFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem 2rem 1.5rem;
+    border-radius: 0 0 12px 12px;
+    color: #ffffff;
+}
+
+.lightbox-caption h3 {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.lightbox-caption p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 0.3rem;
+}
+
+.lightbox-caption .gallery-category {
+    background: rgba(74, 222, 128, 0.2);
+    color: #4ade80;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+/* লাইটবক্স কন্ট্রোল */
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.lightbox-close {
+    top: 2rem;
+    right: 2rem;
+}
+
+.lightbox-prev {
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-next {
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* ===== রেস্পন্সিভ ===== */
+
+/* ট্যাবলেট */
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* মোবাইল */
+@media (max-width: 768px) {
+    .gallery {
+        padding: 3.5rem 0;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .gallery-filter {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        aspect-ratio: 4/3;
+    }
+
+    .overlay-content h3 {
+        font-size: 0.95rem;
+    }
+
+    .overlay-content p {
+        font-size: 0.75rem;
+    }
+
+    .overlay-content i {
+        font-size: 1.5rem;
+    }
+
+    .lightbox {
+        padding: 1rem;
+    }
+
+    .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .lightbox-prev {
+        left: 0.5rem;
+    }
+
+    .lightbox-next {
+        right: 0.5rem;
+    }
+
+    .lightbox-caption {
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .lightbox-caption h3 {
+        font-size: 1.1rem;
+    }
+
+    .lightbox-caption p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ছোট মোবাইল */
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+
+    .gallery-item {
+        aspect-ratio: 4/3;
+        border-radius: 12px;
+    }
+
+    .gallery-filter {
+        gap: 0.4rem;
+    }
+
+    .filter-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .overlay-content h3 {
+        font-size: 0.85rem;
+    }
+
+    .overlay-content p {
+        display: none;
+    }
+
+    .overlay-content i {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .gallery-category {
+        font-size: 0.6rem;
+        padding: 0.1rem 0.6rem;
+    }
+
+    .btn-loadmore {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== অ্যাক্সেসিবিলিটি ===== */
+@media (prefers-reduced-motion: reduce) {
+    .gallery-item {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .gallery-item img {
+        transition: none !important;
+    }
+
+    .gallery-item:hover img {
+        transform: none !important;
+    }
+
+    .gallery-overlay {
+        transition: none !important;
+    }
+
+    .overlay-content {
+        transition: none !important;
+    }
+
+    .gallery-item .gallery-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(10, 26, 43, 0.3), rgba(10, 26, 43, 0.7));
+    }
+
+    .gallery-item .overlay-content {
+        transform: none !important;
+    }
+
+    .btn-loadmore {
+        transition: none !important;
+    }
+
+    .btn-loadmore:hover {
+        transform: none !important;
+    }
+
+    .lightbox {
+        animation: none !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .gallery-overlay {
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .filter-btn.active {
+        background: #0a1a2b;
+    }
+
+    .btn-loadmore {
+        border: 2px solid #0a1a2b;
+    }
+
+    .btn-loadmore:hover {
+        background: #0a1a2b;
+    }
+
+    .lightbox {
+        background: rgba(0, 0, 0, 0.98);
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+        border: 2px solid #ffffff;
+    }
+}

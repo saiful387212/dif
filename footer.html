@@ -1,0 +1,137 @@
+<!-- footer.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ফুটার - দারুল ইত্তিহাদ ফাউন্ডেশন</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="footer.css" />
+</head>
+<body>
+    <!-- ===== ফুটার ===== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <!-- ফুটার গ্রিড -->
+            <div class="footer-grid">
+                <!-- কলাম ১: About DIF -->
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <i class="fas fa-mosque"></i>
+                        <span>দারুল ইত্তিহাদ</span>
+                        <small>ফাউন্ডেশন</small>
+                    </div>
+                    <p class="footer-about">
+                        দারুল ইত্তিহাদ ফাউন্ডেশন একটি মানবিক ও সামাজিক উন্নয়নমূলক সংগঠন। 
+                        ঐক্য, সেবা ও সমৃদ্ধির মাধ্যমে একটি ন্যায়ভিত্তিক সমাজ গঠনে আমরা 
+                        প্রতিশ্রুতিবদ্ধ।
+                    </p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> মিরপুর-১, ঢাকা-১২১৬</p>
+                        <p><i class="fas fa-phone-alt"></i> +৮৮০ ২-৯০০১২৩৪</p>
+                        <p><i class="fas fa-envelope"></i> info@darulittihad.org</p>
+                    </div>
+                </div>
+
+                <!-- কলাম ২: Quick Links -->
+                <div class="footer-column">
+                    <h4 class="footer-title">দ্রুত লিংক</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> হোম</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> আমাদের সম্পর্কে</a></li>
+                        <li><a href="objectives.html"><i class="fas fa-chevron-right"></i> উদ্দেশ্য ও লক্ষ্য</a></li>
+                        <li><a href="membership.html"><i class="fas fa-chevron-right"></i> সদস্যপদ</a></li>
+                        <li><a href="governance.html"><i class="fas fa-chevron-right"></i> পরিচালনা ও নেতৃত্ব</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> যোগাযোগ</a></li>
+                    </ul>
+                </div>
+
+                <!-- কলাম ৩: Programs -->
+                <div class="footer-column">
+                    <h4 class="footer-title">আমাদের কর্মসূচি</h4>
+                    <ul class="footer-links">
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> অর্থনৈতিক উন্নয়ন</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> যুব প্রশিক্ষণ</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> শিক্ষা</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> সমাজকল্যাণ</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> সংস্কৃতি</a></li>
+                        <li><a href="programs.html"><i class="fas fa-chevron-right"></i> কর্মসংস্থান</a></li>
+                    </ul>
+                </div>
+
+                <!-- কলাম ৪: Newsletter & Social -->
+                <div class="footer-column">
+                    <h4 class="footer-title">আপডেট থাকুন</h4>
+                    <p class="footer-newsletter-text">
+                        আমাদের সর্বশেষ সংবাদ ও আপডেট পেতে নিউজলেটারে সাবস্ক্রাইব করুন।
+                    </p>
+                    
+                    <form class="footer-newsletter" id="newsletterForm">
+                        <div class="newsletter-group">
+                            <input type="email" id="newsletterEmail" 
+                                   placeholder="আপনার ইমেইল ঠিকানা" required />
+                            <button type="submit" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <span class="newsletter-message" id="newsletterMessage"></span>
+                    </form>
+
+                    <div class="footer-social">
+                        <h5>সোশ্যাল মিডিয়া</h5>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon facebook" aria-label="ফেসবুক">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="টুইটার">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="ইউটিউব">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="লিংকডইন">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="ইনস্টাগ্রাম">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ফুটার ডিভাইডার -->
+            <div class="footer-divider"></div>
+
+            <!-- ফুটার বটম -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>
+                        &copy; ২০২৪ <strong>দারুল ইত্তিহাদ ফাউন্ডেশন (DIF)</strong>। 
+                        সর্বস্বত্ব সংরক্ষিত।
+                    </p>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">গোপনীয়তা নীতি</a>
+                    <span class="divider">|</span>
+                    <a href="#">শর্তাবলী</a>
+                    <span class="divider">|</span>
+                    <a href="#">সাইট ম্যাপ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="footer.js"></script>
+</body>
+</html>

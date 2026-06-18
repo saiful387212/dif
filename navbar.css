@@ -1,0 +1,461 @@
+/* navbar.css */
+/* ===== নেভবার বেসিক স্টাইল ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+}
+
+/* স্টিকি নেভবার স্ক্রল ইফেক্ট */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+    height: 65px;
+    border-bottom: 2px solid #1a7a5a;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+}
+
+/* ===== লোগো স্টাইল ===== */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #0f3b4c;
+    font-family: 'Hind Siliguri', sans-serif;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.02);
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 12px rgba(26, 122, 90, 0.3);
+    flex-shrink: 0;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    color: #0f3b4c;
+}
+
+.logo-text small {
+    font-weight: 400;
+    font-size: 0.65rem;
+    color: #1a7a5a;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ===== নেভ মেনু ===== */
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.nav-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    color: #2d3e4f;
+    text-decoration: none;
+    font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link i {
+    font-size: 0.9rem;
+    color: #5a7a8a;
+    transition: color 0.3s ease;
+}
+
+.nav-link span {
+    position: relative;
+}
+
+/* লিংক হোভার ইফেক্ট */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, #1a7a5a, #2d9b7a);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 60%;
+}
+
+.nav-link:hover {
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.06);
+}
+
+.nav-link:hover i {
+    color: #1a7a5a;
+}
+
+/* অ্যাক্টিভ লিংক */
+.nav-link.active {
+    color: #1a7a5a;
+    background: rgba(26, 122, 90, 0.08);
+    font-weight: 600;
+}
+
+.nav-link.active i {
+    color: #1a7a5a;
+}
+
+/* ===== দান বাটন (হাইলাইটেড) ===== */
+.nav-link.nav-donate {
+    background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+    color: #fff;
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(26, 122, 90, 0.25);
+    transition: all 0.3s ease;
+}
+
+.nav-link.nav-donate i {
+    color: #fff;
+}
+
+.nav-link.nav-donate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(26, 122, 90, 0.35);
+    background: linear-gradient(135deg, #15694d, #248a6a);
+}
+
+.nav-link.nav-donate::after {
+    display: none;
+}
+
+/* ===== মোবাইল টগল বাটন ===== */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 60px;
+}
+
+.navbar-toggle:hover {
+    background: rgba(26, 122, 90, 0.06);
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 28px;
+    transition: all 0.3s ease;
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background: #0f3b4c;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* হ্যামবার্গার অ্যানিমেশন (অ্যাক্টিভ) */
+.navbar-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.toggle-label {
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: #5a7a8a;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* ===== রেস্পন্সিভ ডিজাইন ===== */
+
+/* ট্যাবলেট ও ছোট ডেস্কটপ */
+@media (max-width: 1024px) {
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+    }
+
+    .nav-link i {
+        font-size: 0.8rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+}
+
+/* মোবাইল */
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px;
+    }
+
+    .navbar-container {
+        padding: 0 1rem;
+    }
+
+    /* লোগো ছোট */
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    .logo-text small {
+        font-size: 0.55rem;
+    }
+
+    /* টগল বাটন দেখান */
+    .navbar-toggle {
+        display: flex;
+    }
+
+    /* মেনু লুকান (ডিফল্ট) */
+    .navbar-menu {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+        gap: 0.25rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-top: 2px solid rgba(26, 122, 90, 0.1);
+        height: auto;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(-10px);
+        border-radius: 0 0 16px 16px;
+    }
+
+    /* মেনু খোলা অবস্থায় */
+    .navbar-menu.active {
+        max-height: 90vh;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        overflow-y: auto;
+        padding: 1rem 1rem 1.5rem;
+    }
+
+    .nav-item {
+        height: auto;
+        width: 100%;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        justify-content: flex-start;
+        gap: 0.75rem;
+    }
+
+    .nav-link i {
+        font-size: 1.1rem;
+        width: 24px;
+        text-align: center;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link.active {
+        background: rgba(26, 122, 90, 0.1);
+        border-right: 3px solid #1a7a5a;
+    }
+
+    .nav-link.nav-donate {
+        margin-top: 0.5rem;
+        justify-content: center;
+        background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+        color: #fff;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+    }
+
+    .nav-link.nav-donate i {
+        color: #fff;
+    }
+
+    .nav-link.nav-donate:hover {
+        transform: none;
+    }
+
+    /* স্ক্রল হলে নেভবার ছোট */
+    .navbar.scrolled {
+        height: 55px;
+    }
+
+    .navbar.scrolled .navbar-menu {
+        top: 55px;
+    }
+
+    /* টগল লেবেল লুকান (শুধু আইকন দেখান) */
+    .toggle-label {
+        display: none;
+    }
+
+    .hamburger-icon {
+        width: 24px;
+    }
+}
+
+/* অতিরিক্ত ছোট মোবাইল (৩২০px) */
+@media (max-width: 380px) {
+    .logo-text {
+        font-size: 0.75rem;
+    }
+
+    .logo-text small {
+        font-size: 0.5rem;
+    }
+
+    .logo-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .navbar-container {
+        padding: 0 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+/* ===== অ্যাক্সেসিবিলিটি ===== */
+.nav-link:focus-visible,
+.navbar-toggle:focus-visible {
+    outline: 2px solid #1a7a5a;
+    outline-offset: 2px;
+}
+
+/* স্কিপ লিংক (অ্যাক্সেসিবিলিটি) */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a7a5a;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    z-index: 2000;
+    font-weight: 600;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 70px;
+}

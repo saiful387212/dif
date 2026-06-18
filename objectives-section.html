@@ -1,0 +1,658 @@
+<!-- objectives-section.html - সম্পূর্ণ সমাধান -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>উদ্দেশ্য ও লক্ষ্য - দারুল ইত্তিহাদ ফাউন্ডেশন</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* ===== রিসেট ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== অবজেক্টিভস সেকশন ===== */
+        .objectives {
+            padding: 5rem 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f4f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objectives::before {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(26, 122, 90, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ===== সেকশন হেডার ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1a7a5a;
+            background: rgba(26, 122, 90, 0.1);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #0a1a2b;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            font-size: 1.1rem;
+            color: #4a5a6a;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== অবজেক্টিভস গ্রিড ===== */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== কার্ড ডিজাইন ===== */
+        .objective-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .objective-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* কার্ডের উপরের বর্ডার */
+        .objective-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #1a7a5a, transparent);
+            opacity: 0;
+            transform: scaleX(0.3);
+            transition: all 0.5s ease;
+        }
+
+        .objective-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        /* কার্ড শাইন ইফেক্ট */
+        .card-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .objective-card:hover .card-shine {
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        /* কার্ড আইকন */
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26, 122, 90, 0.1);
+            border-radius: 16px;
+            color: #1a7a5a;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .objective-card:hover .card-icon {
+            background: linear-gradient(135deg, #1a7a5a, #2d9b7a);
+            color: #ffffff;
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 12px 32px rgba(26, 122, 90, 0.25);
+        }
+
+        /* কার্ড কন্টেন্ট */
+        .card-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0a1a2b;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+        }
+
+        .objective-card:hover .card-title {
+            color: #1a7a5a;
+        }
+
+        .card-text {
+            font-family: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #4a5a6a;
+            margin: 0;
+        }
+
+        /* কার্ড নাম্বার */
+        .card-number {
+            position: absolute;
+            bottom: 1rem;
+            right: 1.2rem;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(26, 122, 90, 0.06);
+            line-height: 1;
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .objective-card:hover .card-number {
+            color: rgba(26, 122, 90, 0.12);
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        /* কার্ড হোভার */
+        .objective-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(10, 26, 43, 0.1);
+            border-color: rgba(26, 122, 90, 0.15);
+        }
+
+        /* ===== ফুটার ডেকোরেশন ===== */
+        .objectives-footer {
+            margin-top: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .deco-line {
+            flex: 1;
+            max-width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(26, 122, 90, 0.2), transparent);
+        }
+
+        .deco-text {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #5a7a8a;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        /* ===== রেস্পন্সিভ ===== */
+
+        /* বড় ট্যাবলেট */
+        @media (max-width: 1200px) {
+            .objectives-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+        }
+
+        /* ট্যাবলেট */
+        @media (max-width: 992px) {
+            .objectives-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+
+            .objective-card {
+                min-height: 200px;
+                padding: 1.8rem 1.2rem;
+            }
+        }
+
+        /* মোবাইল */
+        @media (max-width: 768px) {
+            .objectives {
+                padding: 3.5rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .objective-card {
+                padding: 1.5rem 1rem;
+                min-height: 180px;
+                border-radius: 16px;
+            }
+
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                border-radius: 12px;
+                margin-bottom: 1rem;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .card-text {
+                font-size: 0.8rem;
+                line-height: 1.6;
+            }
+
+            .card-number {
+                font-size: 2.2rem;
+                bottom: 0.75rem;
+                right: 0.8rem;
+            }
+
+            .footer-decoration {
+                gap: 1rem;
+            }
+
+            .deco-line {
+                max-width: 60px;
+            }
+
+            .deco-text {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ছোট মোবাইল */
+        @media (max-width: 480px) {
+            .objectives-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .objective-card {
+                padding: 1.2rem 0.8rem;
+                min-height: 160px;
+                border-radius: 14px;
+            }
+
+            .card-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                margin-bottom: 0.75rem;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .card-text {
+                font-size: 0.7rem;
+                line-height: 1.5;
+            }
+
+            .card-number {
+                font-size: 1.8rem;
+                bottom: 0.5rem;
+                right: 0.6rem;
+            }
+        }
+
+        /* খুব ছোট মোবাইল */
+        @media (max-width: 360px) {
+            .objectives-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .objective-card {
+                min-height: 140px;
+                padding: 1rem;
+            }
+
+            .card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-title {
+                font-size: 0.95rem;
+            }
+
+            .card-text {
+                font-size: 0.8rem;
+            }
+
+            .card-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* অ্যাক্সেসিবিলিটি */
+        @media (prefers-reduced-motion: reduce) {
+            .objective-card {
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .objective-card:hover {
+                transform: none !important;
+            }
+
+            .objective-card::after,
+            .card-shine {
+                display: none !important;
+            }
+
+            .objective-card:hover .card-icon {
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="objectives" id="objectives">
+        <div class="container">
+            <!-- সেকশন হেডার -->
+            <div class="section-header">
+                <span class="section-tag">আমাদের লক্ষ্য</span>
+                <h2 class="section-title">উদ্দেশ্য ও লক্ষ্য</h2>
+                <p class="section-subtitle">
+                    দারুল ইত্তিহাদ ফাউন্ডেশন সমাজের বিভিন্ন ক্ষেত্রে টেকসই উন্নয়নের 
+                    জন্য নিম্নলিখিত উদ্দেশ্যগুলো বাস্তবায়নে কাজ করছে
+                </p>
+            </div>
+
+            <!-- অবজেক্টিভস গ্রিড -->
+            <div class="objectives-grid" id="objectivesGrid">
+                <!-- কার্ড ১ -->
+                <div class="objective-card" data-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">অর্থনৈতিক উন্নয়ন</h3>
+                        <p class="card-text">
+                            স্থানীয় অর্থনীতির উন্নয়নে উদ্যোগ গ্রহণ, কর্মসংস্থান সৃষ্টি ও 
+                            আর্থিক স্বনির্ভরতা অর্জনে সহায়তা।
+                        </p>
+                    </div>
+                    <div class="card-number">০১</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ২ -->
+                <div class="objective-card" data-delay="150">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">যুব কর্মসংস্থান</h3>
+                        <p class="card-text">
+                            দক্ষ যুবকদের কর্মসংস্থানের সুযোগ সৃষ্টি, উদ্যোক্তা তৈরি ও 
+                            ক্যারিয়ার গঠনে সহায়তা।
+                        </p>
+                    </div>
+                    <div class="card-number">০২</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৩ -->
+                <div class="objective-card" data-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">সুদমুক্ত সহায়তা</h3>
+                        <p class="card-text">
+                            অভাবী ও প্রান্তিক জনগোষ্ঠীকে সুদমুক্ত ঋণ ও আর্থিক সহায়তা 
+                            প্রদানের মাধ্যমে স্বাবলম্বী করা।
+                        </p>
+                    </div>
+                    <div class="card-number">০৩</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৪ -->
+                <div class="objective-card" data-delay="250">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">উদ্যোক্তা উন্নয়ন</h3>
+                        <p class="card-text">
+                            নতুন উদ্যোক্তা তৈরি, ব্যবসায়িক পরামর্শ, স্টার্টআপ সহায়তা ও 
+                            নেটওয়ার্কিং সুযোগ সৃষ্টি।
+                        </p>
+                    </div>
+                    <div class="card-number">০৪</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৫ -->
+                <div class="objective-card" data-delay="300">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">প্রশিক্ষণ</h3>
+                        <p class="card-text">
+                            দক্ষতা উন্নয়ন, কারিগরি প্রশিক্ষণ, নেতৃত্ব বিকাশ ও 
+                            ব্যক্তিত্ব উন্নয়নমূলক কর্মসূচি।
+                        </p>
+                    </div>
+                    <div class="card-number">০৫</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৬ -->
+                <div class="objective-card" data-delay="350">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">শিক্ষা</h3>
+                        <p class="card-text">
+                            মানসম্মত শিক্ষার সুযোগ সৃষ্টি, শিক্ষাবৃত্তি প্রদান, স্কুল 
+                            স্থাপন ও শিক্ষা উপকরণ সরবরাহ।
+                        </p>
+                    </div>
+                    <div class="card-number">০৬</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৭ -->
+                <div class="objective-card" data-delay="400">
+                    <div class="card-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">সংস্কৃতি</h3>
+                        <p class="card-text">
+                            বাংলা সংস্কৃতি, সাহিত্য, শিল্পকলা, ঐতিহ্য ও 
+                            সাংস্কৃতিক কর্মকাণ্ডের বিকাশে উদ্যোগ।
+                        </p>
+                    </div>
+                    <div class="card-number">০৭</div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- কার্ড ৮ -->
+                <div class="objective-card" data-delay="450">
+                    <div class="card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">সমাজকল্যাণ</h3>
+                        <p class="card-text">
+                            সমাজের সুবিধাবঞ্চিত, প্রতিবন্ধী ও অসহায় মানুষের 
+                            জীবনমান উন্নয়নে নানাবিধ প্রকল্প।
+                        </p>
+                    </div>
+                    <div class="card-number">০৮</div>
+                    <div class="card-shine"></div>
+                </div>
+            </div>
+
+            <!-- ফুটার -->
+            <div class="objectives-footer">
+                <div class="footer-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-text">এগিয়ে যাচ্ছি লক্ষ্যের পথে</span>
+                    <span class="deco-line"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ============================================================
+        //  objectives.js — কার্ড অ্যানিমেশন
+        // ============================================================
+        (function() {
+            'use strict';
+
+            // কার্ড গুলো সিলেক্ট করুন
+            const cards = document.querySelectorAll('.objective-card');
+
+            // ইন্টারসেকশন অবজার্ভার
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // ডিলে যোগ করুন
+                            const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, delay);
+                            
+                            // একবার অ্যানিমেশন হয়ে গেলে আনঅবজার্ভ করুন
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                // প্রতিটি কার্ড অবজার্ভ করুন
+                cards.forEach(card => {
+                    observer.observe(card);
+                });
+            } else {
+                // ফ্যালব্যাক: সব কার্ড দেখান
+                cards.forEach(card => {
+                    card.classList.add('visible');
+                });
+            }
+
+            console.log('✅ অবজেক্টিভস সেকশন লোড হয়েছে');
+
+        })();
+    </script>
+</body>
+</html>

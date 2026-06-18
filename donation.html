@@ -1,0 +1,264 @@
+<!-- donation.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>দান করুন - দারুল ইত্তিহাদ ফাউন্ডেশন</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="donation.css" />
+</head>
+<body>
+    <section class="donation" id="donation">
+        <div class="container">
+            <!-- সেকশন হেডার -->
+            <div class="section-header">
+                <span class="section-tag">আমাদের দান</span>
+                <h2 class="section-title">দান করুন</h2>
+                <p class="section-subtitle">
+                    দারুল ইত্তিহাদ ফাউন্ডেশনের উন্নয়নমূলক কার্যক্রমে আপনার দান 
+                    অমূল্য সহায়তা। আপনার প্রতিটি টাকা সমাজের কল্যাণে ব্যবহৃত হবে।
+                </p>
+            </div>
+
+            <!-- ডোনেশন গ্রিড -->
+            <div class="donation-grid">
+                <!-- বাম কলাম: দান ফর্ম -->
+                <div class="donation-form-wrapper">
+                    <div class="donation-card">
+                        <h3 class="form-title">অনলাইনে দান করুন</h3>
+                        <p class="form-subtitle">নিচের ফর্মটি পূরণ করে সহজেই দান করতে পারেন</p>
+
+                        <form id="donationForm" class="donation-form">
+                            <div class="form-group">
+                                <label for="donorName">আপনার নাম *</label>
+                                <input type="text" id="donorName" name="donorName" 
+                                       placeholder="আপনার পূর্ণ নাম" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorEmail">ইমেইল ঠিকানা *</label>
+                                <input type="email" id="donorEmail" name="donorEmail" 
+                                       placeholder="আপনার ইমেইল" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donorPhone">মোবাইল নম্বর *</label>
+                                <input type="tel" id="donorPhone" name="donorPhone" 
+                                       placeholder="০১XXXXXXXXX" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donationAmount">দানের পরিমাণ (টাকা) *</label>
+                                <div class="amount-presets">
+                                    <button type="button" class="amount-preset" data-amount="500">৫০০</button>
+                                    <button type="button" class="amount-preset" data-amount="1000">১,০০০</button>
+                                    <button type="button" class="amount-preset" data-amount="2000">২,০০০</button>
+                                    <button type="button" class="amount-preset" data-amount="5000">৫,০০০</button>
+                                    <button type="button" class="amount-preset" data-amount="10000">১০,০০০</button>
+                                </div>
+                                <input type="number" id="donationAmount" name="donationAmount" 
+                                       placeholder="অন্যান্য পরিমাণ" min="1" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donationNote">মন্তব্য (ঐচ্ছিক)</label>
+                                <textarea id="donationNote" name="donationNote" 
+                                          placeholder="যদি কিছু জানাতে চান..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-donate">
+                                <i class="fas fa-heart"></i>
+                                <span>দান করুন</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ডান কলাম: দানের পদ্ধতি -->
+                <div class="donation-methods-wrapper">
+                    <!-- ব্যাংক তথ্য -->
+                    <div class="method-card bank-info">
+                        <div class="method-header">
+                            <i class="fas fa-university"></i>
+                            <h3>ব্যাংক তথ্য</h3>
+                        </div>
+                        <div class="method-content">
+                            <div class="bank-detail">
+                                <span class="label">ব্যাংকের নাম</span>
+                                <span class="value">ইসলামী ব্যাংক বাংলাদেশ লিমিটেড</span>
+                            </div>
+                            <div class="bank-detail">
+                                <span class="label">শাখা</span>
+                                <span class="value">মিরপুর-১, ঢাকা</span>
+                            </div>
+                            <div class="bank-detail">
+                                <span class="label">অ্যাকাউন্টের নাম</span>
+                                <span class="value">দারুল ইত্তিহাদ ফাউন্ডেশন</span>
+                            </div>
+                            <div class="bank-detail">
+                                <span class="label">অ্যাকাউন্ট নম্বর</span>
+                                <span class="value highlight">২০৫-০৩১-১২৩৪৫৬৭</span>
+                            </div>
+                            <div class="bank-detail">
+                                <span class="label">রাউটিং নম্বর</span>
+                                <span class="value">১২৫২৬০৩৪৫</span>
+                            </div>
+                            <div class="bank-detail">
+                                <span class="label">SWIFT কোড</span>
+                                <span class="value">IBBLBDDH</span>
+                            </div>
+                        </div>
+                        <button class="btn-copy" onclick="copyBankInfo()">
+                            <i class="fas fa-copy"></i>
+                            <span>ব্যাংক তথ্য কপি করুন</span>
+                        </button>
+                    </div>
+
+                    <!-- বিকাশ -->
+                    <div class="method-card mobile-banking">
+                        <div class="method-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>বিকাশ</h3>
+                        </div>
+                        <div class="method-content">
+                            <div class="mobile-detail">
+                                <span class="label">বিকাশ নম্বর</span>
+                                <span class="value highlight">০১৯XX-XXXXXX</span>
+                            </div>
+                            <div class="mobile-detail">
+                                <span class="label">মার্চেন্ট নাম</span>
+                                <span class="value">দারুল ইত্তিহাদ ফাউন্ডেশন</span>
+                            </div>
+                            <div class="mobile-detail">
+                                <span class="label">পদ্ধতি</span>
+                                <span class="value">বিকাশ অ্যাপের মাধ্যমে</span>
+                            </div>
+                            <div class="payment-instructions">
+                                <i class="fas fa-info-circle"></i>
+                                <p>
+                                    বিকাশ অ্যাপ থেকে Send Money অপশনে গিয়ে 
+                                    উপরের নম্বরে টাকা পাঠাতে পারেন।
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-pay" onclick="openPayment('বিকাশ')">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>পেমেন্ট করুন</span>
+                        </a>
+                    </div>
+
+                    <!-- নগদ -->
+                    <div class="method-card mobile-banking">
+                        <div class="method-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>নগদ</h3>
+                        </div>
+                        <div class="method-content">
+                            <div class="mobile-detail">
+                                <span class="label">নগদ নম্বর</span>
+                                <span class="value highlight">০১৯XX-XXXXXX</span>
+                            </div>
+                            <div class="mobile-detail">
+                                <span class="label">মার্চেন্ট নাম</span>
+                                <span class="value">দারুল ইত্তিহাদ ফাউন্ডেশন</span>
+                            </div>
+                            <div class="mobile-detail">
+                                <span class="label">পদ্ধতি</span>
+                                <span class="value">নগদ অ্যাপের মাধ্যমে</span>
+                            </div>
+                            <div class="payment-instructions">
+                                <i class="fas fa-info-circle"></i>
+                                <p>
+                                    নগদ অ্যাপ থেকে Send Money অপশনে গিয়ে 
+                                    উপরের নম্বরে টাকা পাঠাতে পারেন।
+                                </p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-pay" onclick="openPayment('নগদ')">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>পেমেন্ট করুন</span>
+                        </a>
+                    </div>
+
+                    <!-- কিউআর কোড -->
+                    <div class="method-card qr-code">
+                        <div class="method-header">
+                            <i class="fas fa-qrcode"></i>
+                            <h3>কিউআর কোড স্ক্যান করুন</h3>
+                        </div>
+                        <div class="method-content">
+                            <div class="qr-wrapper">
+                                <div class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>কিউআর কোড</span>
+                                </div>
+                                <p class="qr-instruction">
+                                    আপনার মোবাইলের ক্যামেরা দিয়ে কিউআর কোড স্ক্যান করে 
+                                    সরাসরি দান করতে পারেন।
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ট্রান্সপারেন্সি বার -->
+            <div class="transparency-bar">
+                <div class="transparency-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>১০০% স্বচ্ছ</span>
+                </div>
+                <div class="transparency-divider"></div>
+                <div class="transparency-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>সরাসরি সহায়তা</span>
+                </div>
+                <div class="transparency-divider"></div>
+                <div class="transparency-item">
+                    <i class="fas fa-receipt"></i>
+                    <span>কর ছাড়ের সুবিধা</span>
+                </div>
+                <div class="transparency-divider"></div>
+                <div class="transparency-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>নিরাপদ লেনদেন</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- সাফল্যের মডাল -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>দান সফল হয়েছে!</h3>
+            <p>
+                আপনার উদার দানের জন্য দারুল ইত্তিহাদ ফাউন্ডেশন পরিবার থেকে 
+                জানাচ্ছে অসংখ্য ধন্যবাদ। আপনার সহায়তা আমাদের কার্যক্রমকে 
+                আরও এগিয়ে নিয়ে যাবে।
+            </p>
+            <div class="modal-actions">
+                <button class="btn-modal" onclick="closeModal()">
+                    <i class="fas fa-check"></i>
+                    <span>ঠিক আছে</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="donation.js"></script>
+</body>
+</html>
