@@ -931,3 +931,35 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📱 সম্পূর্ণ রেস্পন্সিভ ওয়েবসাইট প্রস্তুত');
 
 }); // DOMContentLoaded শেষ
+// প্রতিষ্ঠাতার ছবি পরিবর্তন
+function changeFounderImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.querySelector('.founder-img');
+            if (img) {
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// কমিটি সদস্যের ছবি পরিবর্তন
+function changeAvatar(event, input) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const card = input.closest('.committee-card');
+            const img = card.querySelector('.committee-img');
+            if (img) {
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+}
