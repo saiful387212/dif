@@ -1011,23 +1011,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // ডেটা সংগ্রহ
             const formData = {
-                name: document.getElementById('fullName')?.value || '',
-                email: document.getElementById('email')?.value || '',
-                subject: document.getElementById('subject')?.value || '',
-                message: document.getElementById('message')?.value || ''
+                name: document.getElementById('fullName')?.value.trim() || '',
+                email: document.getElementById('email')?.value.trim() || '',
+                phone: document.getElementById('phone')?.value.trim() || '',
+                subject: document.getElementById('subject')?.value.trim() || '',
+                message: document.getElementById('message')?.value.trim() || ''
             };
+
+            if (!formData.name || !formData.email || !formData.message) {
+                alert('দয়া করে নাম, ইমেইল এবং বার্তা পূরণ করুন।');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                alert('দয়া করে সঠিক ইমেইল ঠিকানা দিন।');
+                return;
+            }
 
             console.log('✅ কন্টাক্ট ফর্ম ডেটা:', formData);
             
-            // সাফল্যের মডাল দেখান
-            if (contactModal) {
-                contactModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে! ধন্যবাদ।');
-            }
-            
-            this.reset();
+            sendEmailToAdmin('contact', formData).then(result => {
+                if (result.success) {
+                    if (contactModal) {
+                        contactModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        alert('আপনার বার্তা সফলভাবে পাঠানো হয়েছে! ধন্যবাদ।');
+                    }
+                    this.reset();
+                } else {
+                    alert('ইমেইল পাঠাতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+                }
+            });
         });
     }
 
@@ -1116,11 +1131,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             const formData = {
-                name: document.getElementById('donorName')?.value || '',
-                email: document.getElementById('donorEmail')?.value || '',
-                phone: document.getElementById('donorPhone')?.value || '',
-                amount: document.getElementById('donationAmount')?.value || '',
-                note: document.getElementById('donationNote')?.value || 'প্রদান করা হয়নি'
+                name: document.getElementById('donorName')?.value.trim() || '',
+                email: document.getElementById('donorEmail')?.value.trim() || '',
+                phone: document.getElementById('donorPhone')?.value.trim() || '',
+                amount: document.getElementById('donationAmount')?.value.trim() || '',
+                note: document.getElementById('donationNote')?.value.trim() || 'প্রদান করা হয়নি'
             };
 
             // ভ্যালিডেশন
@@ -1129,18 +1144,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                alert('দয়া করে সঠিক ইমেইল ঠিকানা দিন।');
+                return;
+            }
+
             console.log('✅ দানের তথ্য:', formData);
             
-            // সাফল্যের মডাল দেখান
-            if (donationModal) {
-                donationModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else {
-                alert('আপনার দান সফল হয়েছে! ধন্যবাদ।');
-            }
-            
-            this.reset();
-            presetButtons.forEach(btn => btn.classList.remove('active'));
+            sendEmailToAdmin('donation', formData).then(result => {
+                if (result.success) {
+                    if (donationModal) {
+                        donationModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        alert('আপনার দান সফল হয়েছে! ধন্যবাদ।');
+                    }
+                    this.reset();
+                    presetButtons.forEach(btn => btn.classList.remove('active'));
+                } else {
+                    alert('ইমেইল পাঠাতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+                }
+            });
         });
     }
 
@@ -1255,15 +1279,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             console.log('✅ নিউজলেটার সাবস্ক্রাইব:', email);
-            showNewsletterMessage('আপনি সফলভাবে সাবস্ক্রাইব করেছেন! ধন্যবাদ।', 'success');
-            this.reset();
             
-            setTimeout(() => {
-                if (newsletterMessage) {
-                    newsletterMessage.textContent = '';
-                    newsletterMessage.className = 'newsletter-message';
+            sendEmailToAdmin('newsletter', { email: email }).then(result => {
+                if (result.success) {
+                    showNewsletterMessage('আপনি সফলভাবে সাবস্ক্রাইব করেছেন! ধন্যবাদ।', 'success');
+                    this.reset();
+                    
+                    setTimeout(() => {
+                        if (newsletterMessage) {
+                            newsletterMessage.textContent = '';
+                            newsletterMessage.className = 'newsletter-message';
+                        }
+                    }, 5000);
+                } else {
+                    showNewsletterMessage('সাবস্ক্রাইব করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।', 'error');
                 }
-            }, 5000);
+            });
         });
     }
 
@@ -1398,15 +1429,20 @@ window.submitJoinForm = function(event) {
     event.preventDefault();
     
     const formData = {
-        name: document.getElementById('joinName')?.value || '',
-        phone: document.getElementById('joinPhone')?.value || '',
-        email: document.getElementById('joinEmail')?.value || '',
-        address: document.getElementById('joinAddress')?.value || '',
+        name: document.getElementById('joinName')?.value.trim() || '',
+        phone: document.getElementById('joinPhone')?.value.trim() || '',
+        email: document.getElementById('joinEmail')?.value.trim() || '',
+        address: document.getElementById('joinAddress')?.value.trim() || '',
         membershipType: document.getElementById('selectedMembership')?.textContent || ''
     };
     
     if (!formData.name || !formData.phone) {
         alert('দয়া করে নাম এবং মোবাইল নম্বর দিন।');
+        return;
+    }
+
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        alert('দয়া করে সঠিক ইমেইল ঠিকানা দিন।');
         return;
     }
     
@@ -1420,16 +1456,16 @@ window.submitJoinForm = function(event) {
 সদস্যপদ: ${formData.membershipType}
 নাম: ${formData.name}
 মোবাইল: ${formData.phone}
+ইমেইল: ${formData.email || 'প্রদত্ত হয়নি'}
 
 শীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।
-আমরা একটি কনফার্মেশন ইমেইলও পাঠিয়েছি।
+আমরা আপনার তথ্যটি saif387212@gmail.com-এ পাঠিয়েছি।
 
 ধন্যবাদ!`);
             closeJoinForm();
             document.getElementById('joinForm')?.reset();
         } else {
-            alert('ইমেইল পাঠাতে সমস্যা হয়েছে। তবে আপনার আবেদন সংরক্ষিত হয়েছে।');
-            closeJoinForm();
+            alert('ইমেইল পাঠাতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন বা সরাসরি আমাদের সাথে যোগাযোগ করুন।');
         }
     });
 };
@@ -1723,10 +1759,10 @@ window.submitJoinForm = function(event) {
     event.preventDefault();
     
     const formData = {
-        name: document.getElementById('joinName')?.value || '',
-        phone: document.getElementById('joinPhone')?.value || '',
-        email: document.getElementById('joinEmail')?.value || '',
-        address: document.getElementById('joinAddress')?.value || '',
+        name: document.getElementById('joinName')?.value.trim() || '',
+        phone: document.getElementById('joinPhone')?.value.trim() || '',
+        email: document.getElementById('joinEmail')?.value.trim() || '',
+        address: document.getElementById('joinAddress')?.value.trim() || '',
         membershipType: document.getElementById('selectedMembership')?.textContent || ''
     };
     
@@ -1734,13 +1770,22 @@ window.submitJoinForm = function(event) {
         alert('দয়া করে নাম এবং মোবাইল নম্বর দিন।');
         return;
     }
+
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        alert('দয়া করে সঠিক ইমেইল ঠিকানা দিন।');
+        return;
+    }
     
     console.log('✅ সদস্যপদ আবেদন:', formData);
     
-    sendToTelegram('membership', formData).then(result => {
-        alert(`🎉 অভিনন্দন! আপনার আবেদন সফলভাবে জমা হয়েছে!\n\n📱 Telegram নোটিফিকেশন পাঠানো হয়েছে।\n\nসদস্যপদ: ${formData.membershipType}\nনাম: ${formData.name}\nমোবাইল: ${formData.phone}\n\nশীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।\nধন্যবাদ!`);
-        closeJoinForm();
-        document.getElementById('joinForm')?.reset();
+    sendEmailToAdmin('membership', formData).then(result => {
+        if (result.success) {
+            alert(`🎉 অভিনন্দন! আপনার আবেদন সফলভাবে জমা হয়েছে!\n\nসদস্যপদ: ${formData.membershipType}\nনাম: ${formData.name}\nমোবাইল: ${formData.phone}\nইমেইল: ${formData.email || 'প্রদত্ত হয়নি'}\n\nশীঘ্রই আমাদের টিম আপনার সাথে যোগাযোগ করবে।\nআপনার তথ্য saif387212@gmail.com-এ পাঠানো হয়েছে।\nধন্যবাদ!`);
+            closeJoinForm();
+            document.getElementById('joinForm')?.reset();
+        } else {
+            alert('ইমেইল পাঠাতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+        }
     });
 };
 
